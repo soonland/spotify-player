@@ -7,7 +7,7 @@ import { FastForwardRounded, FastRewindRounded, PauseRounded, PlayArrowRounded, 
 import Image from 'next/image';
 
 interface SpotifyPlayerProps {
-  results?: string[] | undefined;
+  results?: { data: string[]};
 }
 
 const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({ results }): React.ReactElement => {
@@ -60,7 +60,7 @@ const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({ results }): React.ReactEl
 
   // if (error) return <div>failed to load</div>
   // if (isLoading) return <div>loading...</div>
-  if (results) return <div>{results.map((i, index) => <Link key={index} href={`${i}`}>{`${i}`}</Link>) }</div>
+  if (results && results.data) return <div>{results.data.map((i, index) => <Link key={index} href={`${i}`}>{`${i}`}</Link>) }</div>
   
   return (
     <Box sx={{ flexGrow: 1 }}>
