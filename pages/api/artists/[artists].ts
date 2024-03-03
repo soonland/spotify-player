@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
  
 type ResponseData = {
-  data: any;
+  data: string[];
 }
  
 export default async function handler(
@@ -23,11 +23,11 @@ async function fetchWebApi(endpoint: string, method: string) {
   return await res.json();
 }
 
-async function getTopTracks(){
-  // Endpoint reference : https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks
-  return (await fetchWebApi('v1/search', 'GET'));
-}
+  const getTopTracks = async () => {
+    // Endpoint reference : https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks
+    return (await fetchWebApi('v1/search', 'GET'));
+  }
 
   const topTracks = await getTopTracks();
-  res.status(200).json({ data: topTracks.artists.items.map(i => i.external_urls.spotify) })
+  res.status(200).json({ data: topTracks.artists.items.map((i: { external_urls: { spotify: string }}) => i.external_urls.spotify) })
 }

@@ -4,7 +4,7 @@ import TopMenuBar from '@/components/TopBar';
 import SpotifyPlayer from '@/components/SpotifyPlayer';
 
 export default function Page() {
-  const [ results, setResults ] = React.useState<object | null>(null);
+  const [ results, setResults ] = React.useState<string[]>([]);
   return (
     <>
       <TopMenuBar handleSearch={setResults} />
