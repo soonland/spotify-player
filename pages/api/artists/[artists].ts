@@ -10,7 +10,7 @@ export default async function handler(
 ) {
 
 // Authorization token that must have been created previously. See : https://developer.spotify.com/documentation/web-api/concepts/authorization
-const token = '';
+const token = process.env.SPOTIFY_API_TOKEN;
 
 async function fetchWebApi(endpoint: string, method: string) {
   const res = await fetch(`https://api.spotify.com/${endpoint}?q=${req.query.artists}&type=artist`, {

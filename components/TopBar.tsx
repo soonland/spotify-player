@@ -13,7 +13,7 @@ import useTranslation from 'next-translate/useTranslation';
 import useSWRMutation from 'swr/mutation';
 
 interface TopMenuBarProps {
-  handleSearch(results: string[]): void;
+  handleSearch(results: { data : string[] }): void;
 }
 
 const Search = styled('div')(({ theme }) => ({

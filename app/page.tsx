@@ -1,12 +1,6 @@
 import * as React from 'react';
-import TopMenuBar from '@/components/TopBar';
-import SpotifyPlayer from '@/components/SpotifyPlayer';
+import Home from '@/components/Home';
 
 export default function Page() {
-  const [ results, setResults ] = React.useState<string[]>([]);
-  return (
-    <>
-      <TopMenuBar handleSearch={setResults} />
-      <SpotifyPlayer results={results}/>
-    </>);
+  return (<Home />);
 }
