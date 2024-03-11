@@ -4,7 +4,7 @@ dotenv.config();
 
 const nextConfig = nextTranslate({
   images: {
-        domains: ['i.scdn.co'],
+        remotePatterns: [{ hostname: 'i.scdn.co'}],
       }
   });
 

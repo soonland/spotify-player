@@ -60,9 +60,6 @@ export const authOptions = {
   callbacks: {
     async jwt({ token, user, account }) {
       // Initial sign in
-      console.log("la", JSON.stringify(token));
-      console.log("la la", JSON.stringify(user));
-      console.log("la la la", JSON.stringify(account));
       if (account && user) {
         return {
           accessToken: account.access_token,
