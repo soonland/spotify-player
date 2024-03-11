@@ -1,3 +1,4 @@
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 import NextAuth from "next-auth";
 import Spotify from "next-auth/providers/spotify";
 
@@ -8,7 +9,7 @@ const clientSecret = process.env.SPOTIFY_CLIENT_SECRET || "";
  * `accessToken` and `accessTokenExpires`. If an error occurs,
  * returns the old token and an error property
  */
-const refreshAccessToken = async (token) => {
+const refreshAccessToken = async (token: { refreshToken: any; }) => {
   try {
     const url =
       'https://accounts.spotify.com/api/token?' +
@@ -22,7 +23,7 @@ const refreshAccessToken = async (token) => {
     const response = await fetch(url, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Basic ' + (new Buffer.from(clientId + ':' + clientSecret).toString('base64'))
+        'Authorization': 'Basic ' + (Buffer.from(clientId + ':' + clientSecret).toString('base64')).toString()
       },
       method: 'POST'
     })
