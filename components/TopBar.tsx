@@ -10,11 +10,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Drawer, InputBase, List, ListItem, alpha, styled } from '@mui/material';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
-import useSWRMutation from 'swr/mutation';
-
-interface TopMenuBarProps {
-  handleSearch(results: { data : string[] }): void;
-}
+import { FC, ReactElement } from 'react';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -58,22 +54,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const TopMenuBar: React.FC<TopMenuBarProps> = ({ handleSearch }): React.ReactElement => {
+const TopMenuBar: FC = (): ReactElement => {
   const { t } = useTranslation("common");
   
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
-
-  const [ search, setSearch ] = React.useState<string>("");
-
-  const fetcher = (url: string, { arg }: { arg: { artist: string } }) => fetch(`${url}/${arg.artist}`).then(res => res.json())
-
-  const { data, isMutating, trigger } = useSWRMutation("/api/artists", fetcher);
-
-  React.useEffect(() => {
-    if (data && !isMutating) {
-      handleSearch(data);
-    }
-  }, [data, handleSearch, isMutating]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -113,12 +97,7 @@ const TopMenuBar: React.FC<TopMenuBarProps> = ({ handleSearch }): React.ReactEle
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
-              value={search}
               inputProps={{ 'aria-label': 'search' }}
-              onKeyDown={(e) => { if (e.key === "Enter") { trigger({ artist: search }); }}}
-              onChange={(e) => {
-                setSearch(e.target.value);
-              }}
             />
           </Search>
         </Toolbar>
