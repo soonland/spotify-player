@@ -10,7 +10,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Drawer, InputBase, List, ListItem, alpha, styled } from '@mui/material';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
-import { FC, ReactElement } from 'react';
+import { FC, ReactElement, useEffect } from 'react';
+import useSWRMutation from 'swr/mutation';
+import { signOut, useSession } from 'next-auth/react';
+import { AccountCircle } from '@mui/icons-material';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -55,14 +58,27 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const TopMenuBar: FC = (): ReactElement => {
+  const session = useSession();
+
   const { t } = useTranslation("common");
-  
+
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
+
+  const fetcher = (url: string, { arg }: { arg: { artist: string } }) => fetch(`${url}/${arg.artist}`).then(res => res.json());
+
+  const { data, isMutating, trigger } = useSWRMutation("/api/artists", fetcher);
+
+  useEffect(() => {
+    if (session.status === "authenticated") {
+      trigger({ artist: "Metallica" });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session.status]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar> 
+        <Toolbar>
           <IconButton
             edge="start"
             color="inherit"
@@ -96,10 +112,13 @@ const TopMenuBar: FC = (): ReactElement => {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              placeholder="Search..."
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
+          {session.status === "authenticated" && <IconButton edge="end" onClick={() => signOut()}>
+            <AccountCircle />
+          </IconButton>}
         </Toolbar>
       </AppBar>
     </Box>

@@ -52,6 +52,9 @@ const refreshAccessToken = async (token: { refreshToken: any; }) => {
 
 export const authOptions = {
   // Configure one or more authentication providers
+  // session: {
+  //   maxAge: 30
+  // },
   providers: [
     Spotify({
       clientId: process.env.SPOTIFY_CLIENT_ID || "",

@@ -65,6 +65,5 @@ async function fetchWebApi(endpoint: string, method: string) {
   }
 
   const artists = await getArtists();
-  console.log(util.inspect(artists, false, 10, true));
   res.status(200).json(artists)
 }
