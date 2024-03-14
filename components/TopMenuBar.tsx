@@ -1,5 +1,3 @@
-'use client'
-import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -10,10 +8,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Drawer, InputBase, List, ListItem, alpha, styled } from '@mui/material';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
-import { FC, ReactElement, useEffect } from 'react';
-import useSWRMutation from 'swr/mutation';
 import { signOut, useSession } from 'next-auth/react';
 import { AccountCircle } from '@mui/icons-material';
+import { FC, ReactElement, useState } from 'react';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -57,23 +54,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const TopMenuBar: FC = (): ReactElement => {
+interface TopMenuBarProps {
+  onSearch(searchString: string): void;
+}
+
+const TopMenuBar: FC<TopMenuBarProps> = ({ onSearch }): ReactElement => {
   const session = useSession();
 
   const { t } = useTranslation("common");
 
-  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const fetcher = (url: string, { arg }: { arg: { artist: string } }) => fetch(`${url}/${arg.artist}`).then(res => res.json());
-
-  const { data, isMutating, trigger } = useSWRMutation("/api/artists", fetcher);
-
-  useEffect(() => {
-    if (session.status === "authenticated") {
-      trigger({ artist: "Metallica" });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [session.status]);
+  const [ search, setSearch ] = useState<string>("");
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -113,7 +105,12 @@ const TopMenuBar: FC = (): ReactElement => {
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search..."
+              value={search}
               inputProps={{ 'aria-label': 'search' }}
+              onKeyDown={(e) => { if (e.key === "Enter") { onSearch(search) }}}
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
             />
           </Search>
           {session.status === "authenticated" && <IconButton edge="end" onClick={() => signOut()}>
