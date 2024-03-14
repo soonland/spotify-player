@@ -1,6 +1,7 @@
 'use client';
 import { Roboto } from 'next/font/google';
 import { createTheme } from '@mui/material/styles';
+import * as colors from '@mui/material/colors';
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -9,17 +10,14 @@ const roboto = Roboto({
 });
 
 const theme = createTheme({
+  palette: {
+    primary: colors.blueGrey,
+    secondary: colors.purple,
+  },
   components: {
-    // Name of the component
-    MuiAppBar: {
-      styleOverrides: {
-        // Name of the slot
-        root: {
-          // Some CSS
-          color: '#FFFFFF',
-          backgroundColor: '#006600',
-          fontSize: '2rem',
-        },
+    MuiIconButton: {
+      defaultProps: {
+        color: 'inherit',
       }
     },
     MuiButtonBase: {

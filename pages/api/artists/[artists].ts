@@ -3,8 +3,6 @@ import {
   getServerSession
 } from 'next-auth';
 import { authOptions } from '../auth/[...nextauth]';
-import util from 'util';
-
 
 interface IImage {
   height: number;
@@ -65,6 +63,5 @@ async function fetchWebApi(endpoint: string, method: string) {
   }
 
   const artists = await getArtists();
-  console.log(util.inspect(artists, false, 10, true));
   res.status(200).json(artists)
 }

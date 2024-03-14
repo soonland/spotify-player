@@ -1,5 +1,3 @@
-'use client'
-import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -10,7 +8,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Drawer, InputBase, List, ListItem, alpha, styled } from '@mui/material';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
-import { FC, ReactElement } from 'react';
+import { signOut, useSession } from 'next-auth/react';
+import { AccountCircle } from '@mui/icons-material';
+import { FC, ReactElement, useState } from 'react';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -54,15 +54,23 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const TopMenuBar: FC = (): ReactElement => {
+interface TopMenuBarProps {
+  onSearch(searchString: string): void;
+}
+
+const TopMenuBar: FC<TopMenuBarProps> = ({ onSearch }): ReactElement => {
+  const session = useSession();
+
   const { t } = useTranslation("common");
-  
-  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
+
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const [ search, setSearch ] = useState<string>("");
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar> 
+        <Toolbar>
           <IconButton
             edge="start"
             color="inherit"
@@ -96,10 +104,18 @@ const TopMenuBar: FC = (): ReactElement => {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              placeholder="Search..."
+              value={search}
               inputProps={{ 'aria-label': 'search' }}
+              onKeyDown={(e) => { if (e.key === "Enter") { onSearch(search) }}}
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
             />
           </Search>
+          {session.status === "authenticated" && <IconButton edge="end" onClick={() => signOut()}>
+            <AccountCircle />
+          </IconButton>}
         </Toolbar>
       </AppBar>
     </Box>
