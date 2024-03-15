@@ -8,13 +8,16 @@ import Image from 'next/image';
 import useSWRMutation from 'swr/mutation';
 import TopMenuBar from '@/components/TopMenuBar';
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
+import { useEffect } from 'react';
 
 const Home = () => {
   const session = useSession();
 
   const fetcher = (url: string, { arg }: { arg: { artist: string } }) => fetch(`${url}/${arg.artist}`).then(res => res.json());
+  const fetcherTop5 = (url: string) => fetch(url).then(res => res.json());
 
   const { data, isMutating, trigger } = useSWRMutation("/api/artists", fetcher);
+  const { data: dataTop5, isMutating: isMutatingTop5, trigger: triggerTop5 } = useSWRMutation("/api/me", fetcherTop5);
 
   const columns: GridColDef[] = [
     {
@@ -45,6 +48,12 @@ const Home = () => {
     trigger({ artist: searchString });
   };
 
+  useEffect(() => {
+    if (session.status === "authenticated") {
+      triggerTop5();
+    }
+  }, [session.status]);
+
   return (
     <div>
       <Head>
@@ -65,6 +74,13 @@ const Home = () => {
               <Grid item container flexDirection={"row"} alignItems={"center"}>
                 <Image src={session.data.user?.image as string} alt='profile' width={64} height={64} />
                 <div>Signed in as {session.data.user?.name}</div>
+              </Grid>
+              <Grid item>
+                <ul>
+                  {!isMutatingTop5 && dataTop5?.items.map((el, index) => (
+                    <li key={index}>{el.name} par {el.artists[0].name}</li>
+                  ))}
+                </ul>
               </Grid>
               <Grid item>
                 {isMutating && (
