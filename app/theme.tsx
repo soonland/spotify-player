@@ -1,12 +1,12 @@
-'use client';
-import { Roboto } from 'next/font/google';
-import { createTheme } from '@mui/material/styles';
-import * as colors from '@mui/material/colors';
+"use client";
+import { Roboto } from "next/font/google";
+import { createTheme } from "@mui/material/styles";
+import * as colors from "@mui/material/colors";
 
 const roboto = Roboto({
-  weight: ['300', '400', '500', '700'],
-  subsets: ['latin'],
-  display: 'swap',
+  weight: ["300", "400", "500", "700"],
+  subsets: ["latin"],
+  display: "swap",
 });
 
 const theme = createTheme({
@@ -17,8 +17,8 @@ const theme = createTheme({
   components: {
     MuiIconButton: {
       defaultProps: {
-        color: 'inherit',
-      }
+        color: "inherit",
+      },
     },
     MuiButtonBase: {
       defaultProps: {
