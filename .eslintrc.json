@@ -2,7 +2,16 @@
   "extends": [
     "next/core-web-vitals",
     "eslint:recommended",
+    "plugin:prettier/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended"
-  ]
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 150
+      }
+    ]
+  }
 }

@@ -1,7 +1,7 @@
 import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
-import { CssBaseline, ThemeProvider } from '@mui/material';
-import theme from '../app/theme';
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import theme from "../app/theme";
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -11,7 +11,7 @@ function App({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </ThemeProvider>
     </SessionProvider>
-  )
+  );
 }
 
 export default App;

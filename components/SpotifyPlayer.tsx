@@ -1,45 +1,43 @@
-'use client'
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import { IconButton, Link, Slider, Stack, Typography, styled } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import { FastForwardRounded, FastRewindRounded, PauseRounded, PlayArrowRounded, VolumeDownRounded, VolumeUpRounded } from '@mui/icons-material';
-import Image from 'next/image';
+"use client";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import { IconButton, Link, Slider, Stack, Typography, styled } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import { FastForwardRounded, FastRewindRounded, PauseRounded, PlayArrowRounded, VolumeDownRounded, VolumeUpRounded } from "@mui/icons-material";
+import Image from "next/image";
 
 interface SpotifyPlayerProps {
-  results?: { data: string[]};
+  results?: { data: string[] };
 }
 
 const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({ results }): React.ReactElement => {
-
-  const Widget = styled('div')(({ theme }) => ({
+  const Widget = styled("div")(({ theme }) => ({
     padding: 16,
     borderRadius: 16,
     width: 343,
-    maxWidth: '100%',
-    margin: 'auto',
-    position: 'relative',
+    maxWidth: "100%",
+    margin: "auto",
+    position: "relative",
     zIndex: 1,
-    backgroundColor:
-      theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.4)',
-    backdropFilter: 'blur(40px)',
+    backgroundColor: theme.palette.mode === "dark" ? "rgba(0,0,0,0.6)" : "rgba(255,255,255,0.4)",
+    backdropFilter: "blur(40px)",
   }));
 
-  const CoverImage = styled('div')({
+  const CoverImage = styled("div")({
     width: 100,
     height: 100,
-    objectFit: 'cover',
-    overflow: 'hidden',
+    objectFit: "cover",
+    overflow: "hidden",
     flexShrink: 0,
     borderRadius: 8,
-    backgroundColor: 'rgba(0,0,0,0.08)',
-    '& > img': {
-      width: '100%',
+    backgroundColor: "rgba(0,0,0,0.08)",
+    "& > img": {
+      width: "100%",
     },
   });
-  
+
   const TinyText = styled(Typography)({
-    fontSize: '0.75rem',
+    fontSize: "0.75rem",
     opacity: 0.38,
     fontWeight: 500,
     letterSpacing: 0.2,
@@ -54,25 +52,26 @@ const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({ results }): React.ReactEl
     const secondLeft = value - minute * 60;
     return `${minute}:${secondLeft < 10 ? `0${secondLeft}` : secondLeft}`;
   }
-  const mainIconColor = theme.palette.mode === 'dark' ? '#fff' : '#000';
-  const lightIconColor =
-    theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)';
+  const mainIconColor = theme.palette.mode === "dark" ? "#fff" : "#000";
+  const lightIconColor = theme.palette.mode === "dark" ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.4)";
 
   // if (error) return <div>failed to load</div>
   // if (isLoading) return <div>loading...</div>
-  if (results && results.data) return <div>{results.data.map((i, index) => <Link key={index} href={`${i}`}>{`${i}`}</Link>) }</div>
-  
+  if (results && results.data)
+    return (
+      <div>
+        {results.data.map((i, index) => (
+          <Link key={index} href={`${i}`}>{`${i}`}</Link>
+        ))}
+      </div>
+    );
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Widget>
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
           <CoverImage>
-            <Image
-              alt="can't win - Chilling Sunday"
-              src="/static/images/sliders/chilling-sunday.jpg"
-              width={100}
-              height={100}
-            />
+            <Image alt="can't win - Chilling Sunday" src="/static/images/sliders/chilling-sunday.jpg" width={100} height={100} />
           </CoverImage>
           <Box sx={{ ml: 1.5, minWidth: 0 }}>
             <Typography variant="caption" color="text.secondary" fontWeight={500}>
@@ -95,37 +94,33 @@ const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({ results }): React.ReactEl
           max={duration}
           onChange={(_, value) => setPosition(value as number)}
           sx={{
-            color: theme.palette.mode === 'dark' ? '#fff' : 'rgba(0,0,0,0.87)',
+            color: theme.palette.mode === "dark" ? "#fff" : "rgba(0,0,0,0.87)",
             height: 4,
-            '& .MuiSlider-thumb': {
+            "& .MuiSlider-thumb": {
               width: 8,
               height: 8,
-              transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
-              '&::before': {
-                boxShadow: '0 2px 12px 0 rgba(0,0,0,0.4)',
+              transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
+              "&::before": {
+                boxShadow: "0 2px 12px 0 rgba(0,0,0,0.4)",
               },
-              '&:hover, &.Mui-focusVisible': {
-                boxShadow: `0px 0px 0px 8px ${
-                  theme.palette.mode === 'dark'
-                    ? 'rgb(255 255 255 / 16%)'
-                    : 'rgb(0 0 0 / 16%)'
-                }`,
+              "&:hover, &.Mui-focusVisible": {
+                boxShadow: `0px 0px 0px 8px ${theme.palette.mode === "dark" ? "rgb(255 255 255 / 16%)" : "rgb(0 0 0 / 16%)"}`,
               },
-              '&.Mui-active': {
+              "&.Mui-active": {
                 width: 20,
                 height: 20,
               },
             },
-            '& .MuiSlider-rail': {
+            "& .MuiSlider-rail": {
               opacity: 0.28,
             },
           }}
         />
         <Box
           sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
             mt: -2,
           }}
         >
@@ -134,26 +129,20 @@ const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({ results }): React.ReactEl
         </Box>
         <Box
           sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
             mt: -1,
           }}
         >
           <IconButton aria-label="previous song">
             <FastRewindRounded fontSize="large" htmlColor={mainIconColor} />
           </IconButton>
-          <IconButton
-            aria-label={paused ? 'play' : 'pause'}
-            onClick={() => setPaused(!paused)}
-          >
+          <IconButton aria-label={paused ? "play" : "pause"} onClick={() => setPaused(!paused)}>
             {paused ? (
-              <PlayArrowRounded
-                sx={{ fontSize: '3rem' }}
-                htmlColor={mainIconColor}
-              />
+              <PlayArrowRounded sx={{ fontSize: "3rem" }} htmlColor={mainIconColor} />
             ) : (
-              <PauseRounded sx={{ fontSize: '3rem' }} htmlColor={mainIconColor} />
+              <PauseRounded sx={{ fontSize: "3rem" }} htmlColor={mainIconColor} />
             )}
           </IconButton>
           <IconButton aria-label="next song">
@@ -166,19 +155,19 @@ const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({ results }): React.ReactEl
             aria-label="Volume"
             defaultValue={30}
             sx={{
-              color: theme.palette.mode === 'dark' ? '#fff' : 'rgba(0,0,0,0.87)',
-              '& .MuiSlider-track': {
-                border: 'none',
+              color: theme.palette.mode === "dark" ? "#fff" : "rgba(0,0,0,0.87)",
+              "& .MuiSlider-track": {
+                border: "none",
               },
-              '& .MuiSlider-thumb': {
+              "& .MuiSlider-thumb": {
                 width: 24,
                 height: 24,
-                backgroundColor: '#fff',
-                '&::before': {
-                  boxShadow: '0 4px 8px rgba(0,0,0,0.4)',
+                backgroundColor: "#fff",
+                "&::before": {
+                  boxShadow: "0 4px 8px rgba(0,0,0,0.4)",
                 },
-                '&:hover, &.Mui-focusVisible, &.Mui-active': {
-                  boxShadow: 'none',
+                "&:hover, &.Mui-focusVisible, &.Mui-active": {
+                  boxShadow: "none",
                 },
               },
             }}
@@ -186,8 +175,8 @@ const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({ results }): React.ReactEl
           <VolumeUpRounded htmlColor={lightIconColor} />
         </Stack>
       </Widget>
-   </Box>
+    </Box>
   );
-}
+};
 
 export default SpotifyPlayer;
