@@ -7,6 +7,7 @@ import TopMenuBar from "@/components/TopMenuBar";
 import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import useTranslation from "next-translate/useTranslation";
+import Link from "next/link";
 
 const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
   "& .MuiDataGrid-columnHeaders": {
@@ -14,6 +15,7 @@ const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
   },
 }));
 const Home = () => {
+  console.log("ici");
   const session = useSession();
   const { t } = useTranslation("common");
 
@@ -117,9 +119,7 @@ const Home = () => {
                     {!isMutatingPlaylist &&
                       dataPlaylist?.items.map((el, index) => (
                         <li key={index}>
-                          <a href={el.external_urls.spotify} target="_blank" rel="noopener noreferrer">
-                            {el.name}
-                          </a>
+                          <Link href={`/playlists/${el.id}`}>{el.name}</Link>
                         </li>
                       ))}
                   </ul>
