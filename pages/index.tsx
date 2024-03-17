@@ -1,37 +1,60 @@
 import Head from "next/head";
 import { signIn, useSession } from "next-auth/react";
-import { Box, Button, CircularProgress, Grid, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Grid, Typography, styled } from "@mui/material";
 import Image from "next/image";
 import useSWRMutation from "swr/mutation";
 import TopMenuBar from "@/components/TopMenuBar";
 import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import useTranslation from "next-translate/useTranslation";
 
+const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
+  "& .MuiDataGrid-columnHeaders": {
+    backgroundColor: theme.palette.mode === "light" ? "#fafafa" : "#1d1d1d",
+  },
+}));
 const Home = () => {
   const session = useSession();
+  const { t } = useTranslation("common");
 
-  const fetcher = (url: string, { arg }: { arg: { artist: string } }) => fetch(`${url}/${arg.artist}`).then((res) => res.json());
+  const fetcher = (url: string, { arg }: { arg: { artist: string } }) =>
+    fetch(`${url}/${arg.artist}`).then((res) => res.json());
   const fetcherTop5 = (url: string) => fetch(url).then((res) => res.json());
 
   const { data, isMutating, trigger } = useSWRMutation("/api/artists", fetcher);
   const { data: dataTop5, isMutating: isMutatingTop5, trigger: triggerTop5 } = useSWRMutation("/api/me", fetcherTop5);
+  const {
+    data: dataPlaylist,
+    isMutating: isMutatingPlaylist,
+    trigger: triggerPlaylist,
+  } = useSWRMutation("/api/me/playlists", fetcherTop5);
+
+  const [paginationModel, setPaginationModel] = useState({
+    pageSize: 5,
+    page: 0,
+  });
 
   const columns: GridColDef[] = [
     {
       field: "artistName",
-      headerName: "artistName",
+      headerName: t("dataGrid.search.artistName"),
       width: 150,
+      headerAlign: "center",
     },
     {
       field: "albumCover",
-      headerName: "albumCover",
-      width: 160,
+      headerName: t("dataGrid.search.albumCover"),
+      width: 90,
+      headerAlign: "center",
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      renderCell: (params: GridRenderCellParams<any, string>) => <Image src={params.value as string} alt="" width={160} height={160} />,
+      renderCell: (params: GridRenderCellParams<any, string>) => (
+        <Image src={params.value as string} alt="" width={80} height={80} />
+      ),
     },
     {
       field: "spotifyLink",
-      headerName: "spotifyLink",
+      headerName: t("dataGrid.search.spotifyLink"),
+      headerAlign: "center",
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       renderCell: (params: GridRenderCellParams<any, string>) => (
         <a href={params.value as string} target="_blank" rel="noopener noreferrer">
@@ -48,6 +71,7 @@ const Home = () => {
   useEffect(() => {
     if (session.status === "authenticated") {
       triggerTop5();
+      triggerPlaylist();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session.status]);
@@ -89,10 +113,26 @@ const Home = () => {
                   </ul>
                 </Grid>
                 <Grid item>
+                  <ul>
+                    {!isMutatingPlaylist &&
+                      dataPlaylist?.items.map((el, index) => (
+                        <li key={index}>
+                          <a href={el.external_urls.spotify} target="_blank" rel="noopener noreferrer">
+                            {el.name}
+                          </a>
+                        </li>
+                      ))}
+                  </ul>
+                </Grid>
+                <Grid item>
                   {isMutating && <CircularProgress />}
                   {!isMutating && (
-                    <DataGrid
-                      rowHeight={160}
+                    <StyledDataGrid
+                      rowHeight={80}
+                      pageSizeOptions={[5, 10, 25]}
+                      pagination
+                      paginationModel={paginationModel}
+                      onPaginationModelChange={setPaginationModel}
                       columns={columns}
                       rows={
                         data?.artists?.items?.map((el, index) => ({

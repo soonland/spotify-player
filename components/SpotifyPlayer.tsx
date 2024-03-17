@@ -3,7 +3,14 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import { IconButton, Link, Slider, Stack, Typography, styled } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { FastForwardRounded, FastRewindRounded, PauseRounded, PlayArrowRounded, VolumeDownRounded, VolumeUpRounded } from "@mui/icons-material";
+import {
+  FastForwardRounded,
+  FastRewindRounded,
+  PauseRounded,
+  PlayArrowRounded,
+  VolumeDownRounded,
+  VolumeUpRounded,
+} from "@mui/icons-material";
 import Image from "next/image";
 
 interface SpotifyPlayerProps {
@@ -71,7 +78,12 @@ const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({ results }): React.ReactEl
       <Widget>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <CoverImage>
-            <Image alt="can't win - Chilling Sunday" src="/static/images/sliders/chilling-sunday.jpg" width={100} height={100} />
+            <Image
+              alt="can't win - Chilling Sunday"
+              src="/static/images/sliders/chilling-sunday.jpg"
+              width={100}
+              height={100}
+            />
           </CoverImage>
           <Box sx={{ ml: 1.5, minWidth: 0 }}>
             <Typography variant="caption" color="text.secondary" fontWeight={500}>
