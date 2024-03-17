@@ -54,6 +54,8 @@ const refreshAccessToken = async (token: { refreshToken: any }) => {
   }
 };
 
+const scopes = "user-read-email user-top-read playlist-read-private";
+
 export const authOptions = {
   // Configure one or more authentication providers
   // session: {
@@ -63,7 +65,7 @@ export const authOptions = {
     Spotify({
       clientId: process.env.SPOTIFY_CLIENT_ID || "",
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET || "",
-      authorization: "https://accounts.spotify.com/authorize?scope=user-read-email user-top-read",
+      authorization: `https://accounts.spotify.com/authorize?scope=${scopes}`,
     }),
   ],
   callbacks: {

@@ -3,5 +3,12 @@
     "menu": {
         "home": "Home",
         "spotifyApp": "Spotify Home page"
+    },
+    "dataGrid": {
+        "search": {
+            "artistName": "Artist",
+            "albumCover": "Album",
+            "spotifyLink": "Spotify"
+        }
     }
 }

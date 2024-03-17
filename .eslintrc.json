@@ -10,7 +10,7 @@
     "prettier/prettier": [
       "error",
       {
-        "printWidth": 150
+        "printWidth": 120
       }
     ]
   }
