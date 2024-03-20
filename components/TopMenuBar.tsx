@@ -11,6 +11,7 @@ import useTranslation from "next-translate/useTranslation";
 import { signOut, useSession } from "next-auth/react";
 import { AccountCircle } from "@mui/icons-material";
 import { FC, ReactElement, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -54,12 +55,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-interface TopMenuBarProps {
-  onSearch(searchString: string): void;
-}
-
-const TopMenuBar: FC<TopMenuBarProps> = ({ onSearch }): ReactElement => {
+const TopMenuBar: FC = (): ReactElement => {
   const session = useSession();
+  const router = useRouter();
 
   const { t } = useTranslation("common");
 
@@ -84,10 +82,10 @@ const TopMenuBar: FC<TopMenuBarProps> = ({ onSearch }): ReactElement => {
                 <Link href="/">{t("menu.home")}</Link>
               </ListItem>
               <ListItem>
-                <Link href="/">{t("home")}</Link>
+                <Link href="/top5">{t("menu.top5")}</Link>
               </ListItem>
               <ListItem>
-                <Link href="/">{t("home")}</Link>
+                <Link href="/my-playlists">{t("menu.myPlaylists")}</Link>
               </ListItem>
               <ListItem>
                 <Link href="https://open.spotify.com/?">{t("menu.spotifyApp")}</Link>
@@ -104,7 +102,7 @@ const TopMenuBar: FC<TopMenuBarProps> = ({ onSearch }): ReactElement => {
               inputProps={{ "aria-label": "search" }}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  onSearch(search);
+                  router.push(`/?q=${search}`);
                 }
               }}
               onChange={(e) => {
