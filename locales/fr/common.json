@@ -1,7 +1,9 @@
 {
     "appName": "Spotify Player",
     "menu": {
-        "home": "Home",
+        "home": "Accueil",
+        "top5": "Top 5",
+        "myPlaylists": "Mes listes de lecture",
         "spotifyApp": "Spotify Home page"
     },
     "dataGrid": {
