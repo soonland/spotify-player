@@ -1,6 +1,5 @@
 import { useSession } from "next-auth/react";
 import { Box, Grid } from "@mui/material";
-import Image from "next/image";
 import useSWRMutation from "swr/mutation";
 import { useEffect } from "react";
 import Link from "next/link";
@@ -30,10 +29,6 @@ const Home = () => {
           <Grid container flexDirection={"column"} spacing={2}>
             {session.status === "authenticated" && (
               <>
-                <Grid item container flexDirection={"row"} alignItems={"center"}>
-                  <Image src={session.data.user?.image as string} alt="profile" width={64} height={64} />
-                  <div>Signed in as {session.data.user?.name}</div>
-                </Grid>
                 <Grid item>
                   <ul>
                     {!isMutatingPlaylist &&

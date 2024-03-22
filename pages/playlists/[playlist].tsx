@@ -1,3 +1,4 @@
+import { CircularProgress } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import useSWRMutation from "swr/mutation";
@@ -16,6 +17,7 @@ const Playlist = () => {
     `/api/playlists/${router.query.playlist}?fields=items%28track%28name%29%29`,
     fetcher,
   );
+  if (isMutating) return <CircularProgress />;
   return !isMutating && <ul>{data?.items.map((el, index) => <li key={index}>{el.track.name}</li>)}</ul>;
 };
 
