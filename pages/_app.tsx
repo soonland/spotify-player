@@ -1,9 +1,10 @@
 import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import theme from "../app/theme";
 import TopMenuBar from "@/components/TopMenuBar";
 import Head from "next/head";
+import MyProfile from "@/components/MyProfile";
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -15,7 +16,10 @@ function App({ Component, pageProps }: AppProps) {
         </Head>
         <CssBaseline />
         <TopMenuBar />
-        <Component {...pageProps} />
+        <Box padding={2}>
+          <MyProfile />
+          <Component {...pageProps} />
+        </Box>
       </ThemeProvider>
     </SessionProvider>
   );
