@@ -19,7 +19,7 @@
     "@mui/material-nextjs": "^5.15.11",
     "@mui/x-data-grid": "^6.19.6",
     "dotenv": "^16.4.5",
-    "next": "14.1.1",
+    "next": "14.1.4",
     "next-auth": "^4.24.7",
     "next-translate": "^2.6.2",
     "react": "^18",
