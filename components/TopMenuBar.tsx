@@ -67,16 +67,22 @@ const TopMenuBar: FC = (): ReactElement => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" data-testid="testid.appBar">
         <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => setIsDrawerOpen(true)}>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            onClick={() => setIsDrawerOpen(true)}
+            data-testid="testid.menuButton"
+          >
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {t("appName")}
           </Typography>
 
-          <Drawer open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
+          <Drawer open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} data-testid="testid.drawer">
             <List>
               <ListItem>
                 <Link href="/">{t("menu.home")}</Link>
@@ -99,6 +105,7 @@ const TopMenuBar: FC = (): ReactElement => {
             <StyledInputBase
               placeholder="Search..."
               value={search}
+              data-testid="testid.search"
               inputProps={{ "aria-label": "search" }}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
@@ -111,7 +118,7 @@ const TopMenuBar: FC = (): ReactElement => {
             />
           </Search>
           {session.status === "authenticated" && (
-            <IconButton edge="end" onClick={() => signOut()}>
+            <IconButton edge="end" onClick={() => signOut()} data-testid="testid.logout">
               <AccountCircle />
             </IconButton>
           )}
