@@ -9,13 +9,13 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-      day: "friday"
-      time: "16:00"
+      day: "tuesday"
+      time: "15:45"
       timezone: "America/Toronto"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
-      day: "friday"
-      time: "16:00"
+      day: "tuesday"
+      time: "15:45"
       timezone: "America/Toronto"
