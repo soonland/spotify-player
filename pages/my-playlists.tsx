@@ -31,11 +31,14 @@ const Home = () => {
               <Grid item>
                 <ul>
                   {!isMutatingPlaylist &&
-                    dataPlaylist?.items.map((el, index) => (
-                      <li key={index}>
-                        <Link href={`/playlists/${el.id}`}>{el.name}</Link>
-                      </li>
-                    ))}
+                    dataPlaylist?.items.map((el, index) => {
+                      const key = `playlist-${index}`;
+                      return (
+                        <li key={key}>
+                          <Link href={`/playlists/${el.id}`}>{el.name}</Link>
+                        </li>
+                      );
+                    })}
                 </ul>
               </Grid>
             )}
