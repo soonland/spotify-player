@@ -1,5 +1,12 @@
 # Spotify Player with Next.js
 
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=soonland_spotify-player)](https://sonarcloud.io/summary/new_code?id=soonland_spotify-player)
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=soonland_spotify-player&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=soonland_spotify-player)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=soonland_spotify-player&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=soonland_spotify-player)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=soonland_spotify-player&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=soonland_spotify-player)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=soonland_spotify-player&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=soonland_spotify-player)
+
 This repository hosts a sleek and efficient Spotify Player application built with Next.js. Seamlessly integrating with the Spotify API, this application brings a personalized music experience to users, allowing them to enjoy their favorite tracks and playlists hassle-free.
 
 ## Features
