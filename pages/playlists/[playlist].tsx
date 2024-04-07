@@ -18,7 +18,16 @@ const Playlist = () => {
     fetcher,
   );
   if (isMutating) return <CircularProgress />;
-  return !isMutating && <ul>{data?.items.map((el, index) => <li key={index}>{el.track.name}</li>)}</ul>;
+  return (
+    !isMutating && (
+      <ul>
+        {data?.items.map((el, index) => {
+          const key = `track-${index}`;
+          return <li key={key}>{el.track.name}</li>;
+        })}
+      </ul>
+    )
+  );
 };
 
 export default Playlist;

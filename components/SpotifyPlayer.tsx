@@ -57,19 +57,18 @@ const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({ results }): React.ReactEl
   function formatDuration(value: number) {
     const minute = Math.floor(value / 60);
     const secondLeft = value - minute * 60;
-    return `${minute}:${secondLeft < 10 ? `0${secondLeft}` : secondLeft}`;
+    return `${minute}:${secondLeft.toString().padStart(2, "0")}`;
   }
   const mainIconColor = theme.palette.mode === "dark" ? "#fff" : "#000";
   const lightIconColor = theme.palette.mode === "dark" ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.4)";
 
-  // if (error) return <div>failed to load</div>
-  // if (isLoading) return <div>loading...</div>
-  if (results && results.data)
+  if (results?.data)
     return (
       <div>
-        {results.data.map((i, index) => (
-          <Link key={index} href={`${i}`}>{`${i}`}</Link>
-        ))}
+        {results.data.map((i, index) => {
+          const key = `link-${index}`;
+          return <Link key={key} href={`${i}`}>{`${i}`}</Link>;
+        })}
       </div>
     );
 

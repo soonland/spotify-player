@@ -35,11 +35,14 @@ const Home = () => {
               <Grid item>
                 <ul>
                   {!isMutatingTop5 &&
-                    dataTop5?.items.map((el, index) => (
-                      <li key={index}>
-                        {el.name} par {el.artists[0].name}
-                      </li>
-                    ))}
+                    dataTop5?.items.map((el, index) => {
+                      const key = `track-${index}`;
+                      return (
+                        <li key={key}>
+                          {el.name} par {el.artists[0].name}
+                        </li>
+                      );
+                    })}
                 </ul>
               </Grid>
             )}
