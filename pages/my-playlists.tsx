@@ -28,18 +28,16 @@ const Home = () => {
         <Box padding={2}>
           <Grid container flexDirection={"column"} spacing={2}>
             {session.status === "authenticated" && (
-              <>
-                <Grid item>
-                  <ul>
-                    {!isMutatingPlaylist &&
-                      dataPlaylist?.items.map((el, index) => (
-                        <li key={index}>
-                          <Link href={`/playlists/${el.id}`}>{el.name}</Link>
-                        </li>
-                      ))}
-                  </ul>
-                </Grid>
-              </>
+              <Grid item>
+                <ul>
+                  {!isMutatingPlaylist &&
+                    dataPlaylist?.items.map((el, index) => (
+                      <li key={index}>
+                        <Link href={`/playlists/${el.id}`}>{el.name}</Link>
+                      </li>
+                    ))}
+                </ul>
+              </Grid>
             )}
           </Grid>
         </Box>

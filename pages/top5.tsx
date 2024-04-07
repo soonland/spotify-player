@@ -32,18 +32,16 @@ const Home = () => {
         <Box padding={2}>
           <Grid container flexDirection={"column"} spacing={2}>
             {session.status === "authenticated" && (
-              <>
-                <Grid item>
-                  <ul>
-                    {!isMutatingTop5 &&
-                      dataTop5?.items.map((el, index) => (
-                        <li key={index}>
-                          {el.name} par {el.artists[0].name}
-                        </li>
-                      ))}
-                  </ul>
-                </Grid>
-              </>
+              <Grid item>
+                <ul>
+                  {!isMutatingTop5 &&
+                    dataTop5?.items.map((el, index) => (
+                      <li key={index}>
+                        {el.name} par {el.artists[0].name}
+                      </li>
+                    ))}
+                </ul>
+              </Grid>
             )}
           </Grid>
         </Box>

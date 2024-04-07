@@ -74,29 +74,27 @@ const Home = () => {
         <Box padding={2}>
           <Grid container flexDirection={"column"} spacing={2}>
             {session.status === "authenticated" && (
-              <>
-                <Grid item>
-                  {isMutating && <CircularProgress />}
-                  {!isMutating && (
-                    <StyledDataGrid
-                      rowHeight={80}
-                      pageSizeOptions={[5, 10, 25]}
-                      pagination
-                      paginationModel={paginationModel}
-                      onPaginationModelChange={setPaginationModel}
-                      columns={columns}
-                      rows={
-                        data?.artists?.items?.map((el, index) => ({
-                          id: index,
-                          artistName: el.name,
-                          albumCover: el.images[2]?.url,
-                          spotifyLink: el.external_urls.spotify,
-                        })) || []
-                      }
-                    />
-                  )}
-                </Grid>
-              </>
+              <Grid item>
+                {isMutating && <CircularProgress />}
+                {!isMutating && (
+                  <StyledDataGrid
+                    rowHeight={80}
+                    pageSizeOptions={[5, 10, 25]}
+                    pagination
+                    paginationModel={paginationModel}
+                    onPaginationModelChange={setPaginationModel}
+                    columns={columns}
+                    rows={
+                      data?.artists?.items?.map((el, index) => ({
+                        id: index,
+                        artistName: el.name,
+                        albumCover: el.images[2]?.url,
+                        spotifyLink: el.external_urls.spotify,
+                      })) || []
+                    }
+                  />
+                )}
+              </Grid>
             )}
           </Grid>
         </Box>
