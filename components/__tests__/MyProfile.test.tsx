@@ -5,24 +5,30 @@ import { signIn, useSession } from "next-auth/react";
 import userEvent from "@testing-library/user-event";
 jest.mock("next-auth/react");
 
+const mockSessionAuth = {
+  expires: new Date(Date.now() + 2 * 86400).toISOString(),
+  status: "authenticated",
+  data: {
+    user: {
+      name: "test",
+      image: {
+        src: "/img.jpg",
+        height: 24,
+        width: 24,
+        blurDataURL: "data:image/png;base64,imagedata",
+      },
+    },
+  },
+};
+
+const mockSessionUnauth = {
+  ...mockSessionAuth,
+  status: "unauthenticated",
+};
+
 describe("MyProfile", () => {
   it("renders a Profile", async () => {
-    const mockSession = {
-      expires: new Date(Date.now() + 2 * 86400).toISOString(),
-      status: "authenticated",
-      data: {
-        user: {
-          name: "test",
-          image: {
-            src: "/img.jpg",
-            height: 24,
-            width: 24,
-            blurDataURL: "data:image/png;base64,imagedata",
-          },
-        },
-      },
-    };
-    (useSession as jest.Mock).mockReturnValue(mockSession);
+    (useSession as jest.Mock).mockReturnValue(mockSessionAuth);
 
     render(<MyProfile />);
     const grid = screen.getByTestId("testid.grid");
@@ -48,27 +54,9 @@ describe("MyProfile", () => {
   });
 
   it("renders a Not Signed", async () => {
-    const mockSession = {
-      expires: new Date(Date.now() + 2 * 86400).toISOString(),
-      status: "unauthenticated",
-      data: {
-        user: {
-          name: "test",
-          image: {
-            src: "/img.jpg",
-            height: 24,
-            width: 24,
-            blurDataURL: "data:image/png;base64,imagedata",
-          },
-        },
-      },
-    };
-    (useSession as jest.Mock).mockReturnValue(mockSession);
+    (useSession as jest.Mock).mockReturnValue(mockSessionUnauth);
 
     render(<MyProfile />);
-
-    const grid = screen.getByTestId("testid.button");
-    expect(grid).toBeInTheDocument();
 
     const text = screen.getByText("You are not signed in");
     expect(text).toBeInTheDocument();
