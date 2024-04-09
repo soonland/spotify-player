@@ -2,7 +2,7 @@
 
 [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=soonland_spotify-player)](https://sonarcloud.io/summary/new_code?id=soonland_spotify-player)
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=soonland_spotify-player&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=soonland_spotify-player)
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/summary/new_code?id=soonland_spotify-player)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=soonland_spotify-player&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=soonland_spotify-player)
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=soonland_spotify-player&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=soonland_spotify-player)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=soonland_spotify-player&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=soonland_spotify-player)
@@ -49,3 +49,23 @@ To set up the Spotify Player application on your local machine, follow these ste
 5. **Access the Application:** Open your web browser and navigate to `http://localhost:3000` to access the Spotify Player application locally.
 
 Start exploring your music library with ease using the Spotify Player with Next.js!
+
+## SonarCloud Integration
+
+SonarCloud performs automatic code analysis on each commit pushed to the repository, enabling continuous monitoring of code quality throughout the development process. This helps identify and address issues early, leading to improved overall code quality and project maintainability.
+
+### Accessing SonarCloud Reports
+
+You can access the SonarCloud reports for this project by visiting the following page:
+
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/summary/new_code?id=soonland_spotify-player)
+
+### Configuration
+
+Integration with SonarCloud is managed through a `sonar-project.properties` file located at the root of the project. This file contains the necessary configurations for SonarCloud to analyze the source code.
+
+### Additional Resources
+
+- [SonarCloud](https://sonarcloud.io/): Official website of SonarCloud to learn more about the static analysis tool.
+- [SonarCloud Documentation](https://docs.sonarqube.org/latest/): Official documentation of SonarCloud to get detailed information on its usage and configuration.
+
