@@ -21,7 +21,9 @@ const MyProfile: FC = (): ReactElement => {
   return (
     <Grid item container flexDirection={"row"} alignItems={"center"} data-testid="testid.grid">
       <Image src={session.data?.user?.image as string} alt="profile" width={64} height={64} />
-      <div>Signed in as {session.data?.user?.name}</div>
+      <Typography ml={1} fontWeight={400}>
+        Signed in as {session.data?.user?.name}
+      </Typography>
     </Grid>
   );
 };

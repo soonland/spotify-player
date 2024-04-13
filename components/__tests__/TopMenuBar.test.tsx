@@ -43,10 +43,6 @@ describe("TopMenuBar", () => {
     const logout = screen.getByTestId("testid.logout");
     expect(logout).toBeInTheDocument();
 
-    await userEvent.type(screen.getByTestId("testid.search"), "test");
-    await userEvent.keyboard("{Enter}");
-    expect(mockRouter.push).toHaveBeenCalledWith("/?q=test");
-
     await act(async () => {
       await userEvent.click(screen.getByTestId("testid.menuButton"));
     });

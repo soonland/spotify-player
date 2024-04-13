@@ -8,9 +8,31 @@
     },
     "dataGrid": {
         "search": {
+            "type": "Type",
             "artistName": "Artiste",
             "albumCover": "Album",
             "spotifyLink": "Spotify"
+        },
+        "rows": {
+            "type": {
+                "artist": "Artist",
+                "album": "Album",
+                "track": "Track",
+                "playlist": "Playlist"
+            },
+            "track": {
+                "trackName": "Track",
+                "trackDuration": "Duration",
+                "trackPreview": "Preview"
+            }
         }
+    },
+    "search": {
+        "search": "Rechercher",
+        "searchArtist": "Rechercher un artiste",
+        "searchAlbum": "Rechercher un album",
+        "searchTrack": "Rechercher une chanson",
+        "searchPlaylist": "Rechercher une liste de lecture",
+        "searchButton": "Rechercher"
     }
 }

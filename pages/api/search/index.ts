@@ -4,27 +4,28 @@ import { authOptions } from "../auth/[...nextauth]";
 import { ISearch } from "../../../models/types";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<ISearch>) {
-  // Authorization token that must have been created previously. See : https://developer.spotify.com/documentation/web-api/concepts/authorization
-  // const token = process.env.SPOTIFY_API_TOKEN;
-
   const { accessToken } = await getServerSession(req, res, authOptions);
 
   async function fetchWebApi(endpoint: string, method: string) {
-    const res = await fetch(`https://api.spotify.com/${endpoint}?q=${req.query.artists}&type=artist`, {
+    console.log("req.query", req.query);
+    const url = `https://api.spotify.com/${endpoint}?q=${req.query.q}&type=${(req.query.type as string).replaceAll(",", "%2C")}`;
+    const res = await fetch(url, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
       method,
       // body:JSON.stringify(body)
     });
+    // console.log("url", url);
+    // console.log("res", await res.json());
     return await res.json();
   }
 
-  const getArtists = async () => {
+  const search = async () => {
     // Endpoint reference : https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks
     return await fetchWebApi("v1/search", "GET");
   };
 
-  const artists = await getArtists();
-  res.status(200).json(artists);
+  const results = await search();
+  res.status(200).json(results);
 }
