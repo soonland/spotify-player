@@ -2,7 +2,6 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Search from "../Search";
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 jest.mock("next-auth/react");
 
@@ -10,25 +9,8 @@ jest.mock("next/navigation", () => ({
   useRouter: jest.fn(),
 }));
 
-describe("TopMenuBar", () => {
-  it("renders a TopMenuBar", async () => {
-    const mockSession = {
-      expires: new Date(Date.now() + 2 * 86400).toISOString(),
-      status: "authenticated",
-      data: {
-        user: {
-          name: "test",
-          image: {
-            src: "/img.jpg",
-            height: 24,
-            width: 24,
-            blurDataURL: "data:image/png;base64,imagedata",
-          },
-        },
-      },
-    };
-    (useSession as jest.Mock).mockReturnValue(mockSession);
-
+describe("Search", () => {
+  it("renders a Search", async () => {
     const mockRouter = {
       push: jest.fn(), // the component uses `router.push` only
     };
