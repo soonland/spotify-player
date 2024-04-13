@@ -5,7 +5,7 @@ export interface IImage {
 }
 
 export interface IArtist {
-  externalUrls: { spotify: string };
+  external_urls: { spotify: string };
   followers: { href: string; total: number };
   href: string;
   id: string;
@@ -32,7 +32,7 @@ export interface IAlbum {
   uri: string;
 }
 
-export interface ITracks {
+export interface ITrack {
   album: IAlbum;
   artists: IArtist[];
   disc_number: number;
@@ -61,9 +61,19 @@ export interface ISearchArtists {
   total: number;
 }
 
+export interface ISearchAlbums {
+  href: string;
+  items: IAlbum[];
+  limit: number;
+  next: string;
+  offset: number;
+  previous: string;
+  total: number;
+}
+
 export interface ISearchTracks {
   href: string;
-  items: ITracks[];
+  items: ITrack[];
   limit: number;
   next: string;
   offset: number;
@@ -73,5 +83,6 @@ export interface ISearchTracks {
 
 export interface ISearch {
   artists: ISearchArtists;
+  albums: ISearchAlbums;
   tracks: ISearchTracks;
 }
