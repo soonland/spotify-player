@@ -73,6 +73,8 @@ Integration with SonarCloud is managed through a `sonar-project.properties` file
 
 ## GitHub Integration with Vercel Deployment
 
+![Vercel](https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg)
+
 This project leverages the seamless integration between GitHub and Vercel for continuous deployment. With this integration, every push to the main branch of your GitHub repository triggers an automatic deployment to Vercel, ensuring that your application is always up-to-date with the latest changes.
 
 ### Setting Up GitHub Integration
