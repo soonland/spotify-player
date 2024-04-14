@@ -71,3 +71,26 @@ Integration with SonarCloud is managed through a `sonar-project.properties` file
 - [SonarCloud](https://sonarcloud.io/): Official website of SonarCloud to learn more about the static analysis tool.
 - [SonarCloud Documentation](https://docs.sonarqube.org/latest/): Official documentation of SonarCloud to get detailed information on its usage and configuration.
 
+## GitHub Integration with Vercel Deployment
+
+This project leverages the seamless integration between GitHub and Vercel for continuous deployment. With this integration, every push to the main branch of your GitHub repository triggers an automatic deployment to Vercel, ensuring that your application is always up-to-date with the latest changes.
+
+### Setting Up GitHub Integration
+
+To set up GitHub integration with Vercel for automatic deployments, follow these steps:
+
+1. **Connect Vercel to GitHub:** Log in to your Vercel account and connect your GitHub repository to Vercel. You can do this by importing your GitHub repository into Vercel or by authorizing Vercel to access your GitHub repositories directly.
+
+2. **Configure Deployment Settings:** Once your GitHub repository is connected to Vercel, configure the deployment settings according to your preferences. You can specify which branches trigger deployments, set up environment variables, and configure other deployment options.
+
+3. **Enable Automatic Deployments:** Enable automatic deployments for your main branch. This ensures that every push to the main branch of your GitHub repository triggers a new deployment to Vercel.
+
+### Benefits of GitHub Integration
+
+The integration between GitHub and Vercel streamlines the deployment process and enhances collaboration among team members. Developers can focus on writing code, knowing that their changes will be automatically deployed to Vercel without manual intervention. This improves productivity and enables faster iteration cycles, ultimately leading to a more efficient development workflow.
+
+### Additional Resources
+
+- [Vercel GitHub Integration](https://vercel.com/docs/v2/git-integrations): Official documentation on integrating Vercel with GitHub for continuous deployment.
+- [Vercel Dashboard](https://vercel.com/dashboard): Access your Vercel dashboard to manage deployment settings and monitor deployments.
+- [GitHub Actions](https://github.com/features/actions): Explore GitHub Actions for additional automation and workflow customization options.
