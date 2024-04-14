@@ -1,7 +1,10 @@
 import { Button, InputBase, Menu, MenuItem, Stack, alpha, styled } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { FC, useState, MouseEvent, PropsWithChildren } from "react";
-import SearchIcon from "@mui/icons-material/Search";
+import TuneIcon from "@mui/icons-material/Tune";
+import AlbumIcon from "@mui/icons-material/Album";
+import AudiotrackIcon from "@mui/icons-material/Audiotrack";
+import PersonIcon from "@mui/icons-material/Person";
 import useTranslation from "next-translate/useTranslation";
 
 interface Props {
@@ -35,13 +38,28 @@ const SearchTypeSelect: FC<SearchTypeSelectProps> = ({ onSelect }) => {
   const { t } = useTranslation("common");
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [searchType, setSearchType] = useState<string>("");
   const open = Boolean(anchorEl);
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = (searchType: string) => {
     setAnchorEl(null);
+    setSearchType(searchType);
     onSelect(searchType);
+  };
+
+  const searchIcon = () => {
+    switch (searchType) {
+      case "artist":
+        return <PersonIcon htmlColor="white" />;
+      case "album":
+        return <AlbumIcon htmlColor="white" />;
+      case "track":
+        return <AudiotrackIcon htmlColor="white" />;
+      default:
+        return <TuneIcon htmlColor="white" />;
+    }
   };
 
   return (
@@ -54,9 +72,7 @@ const SearchTypeSelect: FC<SearchTypeSelectProps> = ({ onSelect }) => {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        <SearchIconWrapper>
-          <SearchIcon htmlColor="white" />
-        </SearchIconWrapper>
+        <SearchIconWrapper>{searchIcon()}</SearchIconWrapper>
       </Button>
 
       <Menu
@@ -113,12 +129,13 @@ const Search: FC<Props> = () => {
   const [search, setSearch] = useState<string>("");
   const [searchType, setSearchType] = useState<string>("");
   const router = useRouter();
+  const { t } = useTranslation("common");
 
   return (
     <StyledSearch>
       <SearchTypeSelect onSelect={setSearchType} />
       <StyledInputBase
-        placeholder="Search..."
+        placeholder={t("search.searchPlaceholder")}
         value={search}
         data-testid="testid.search"
         inputProps={{ "aria-label": "search" }}

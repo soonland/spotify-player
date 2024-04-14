@@ -149,7 +149,7 @@ const Home = () => {
   return (
     <div>
       <main>
-        <Box padding={2}>
+        <Box>
           <Grid container flexDirection={"column"} spacing={2}>
             {session.status === "authenticated" && (
               <Grid item>
@@ -157,7 +157,7 @@ const Home = () => {
                   autoHeight
                   rowHeight={80}
                   checkboxSelection
-                  pageSizeOptions={[5, 10, 25]}
+                  pageSizeOptions={[5, 10, 25, 50, 100]}
                   pagination
                   loading={isMutating}
                   paginationModel={paginationModel}
