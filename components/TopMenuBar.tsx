@@ -48,6 +48,9 @@ const TopMenuBar: FC = (): ReactElement => {
                 <Link href="/my-playlists">{t("menu.myPlaylists")}</Link>
               </ListItem>
               <ListItem>
+                <Link href="/changelog">{t("menu.changelog")}</Link>
+              </ListItem>
+              <ListItem>
                 <Link href="https://open.spotify.com/?">{t("menu.spotifyApp")}</Link>
               </ListItem>
             </List>

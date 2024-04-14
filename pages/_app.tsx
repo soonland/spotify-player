@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import MyProfile from "@/components/MyProfile";
 
 function App({ Component, pageProps }: AppProps) {
+  console.log("pageProps", pageProps);
   return (
     <SessionProvider session={pageProps.session}>
       <ThemeProvider theme={theme}>
@@ -18,7 +19,8 @@ function App({ Component, pageProps }: AppProps) {
         <CssBaseline />
         <TopMenuBar />
         <Box padding={4} mb={6}>
-          <MyProfile />
+          {pageProps.showProfile && <MyProfile />}
+          {/* <MyProfile /> */}
           <Component {...pageProps} />
         </Box>
         <Footer />

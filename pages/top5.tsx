@@ -54,3 +54,11 @@ const Home = () => {
 };
 
 export default Home;
+
+export const getServerSideProps = async () => {
+  return {
+    props: {
+      showProfile: true,
+    },
+  };
+};
