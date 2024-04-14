@@ -33,6 +33,7 @@
         "searchAlbum": "Rechercher un album",
         "searchTrack": "Rechercher une chanson",
         "searchPlaylist": "Rechercher une liste de lecture",
-        "searchButton": "Rechercher"
+        "searchButton": "Rechercher",
+        "searchPlaceholder": "Rechercher ..."
     }
 }

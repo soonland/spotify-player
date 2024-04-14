@@ -4,6 +4,7 @@ import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import theme from "../app/theme";
 import TopMenuBar from "@/components/TopMenuBar";
 import Head from "next/head";
+import Footer from "@/components/Footer";
 import MyProfile from "@/components/MyProfile";
 
 function App({ Component, pageProps }: AppProps) {
@@ -16,10 +17,11 @@ function App({ Component, pageProps }: AppProps) {
         </Head>
         <CssBaseline />
         <TopMenuBar />
-        <Box padding={2}>
+        <Box padding={4} mb={6}>
           <MyProfile />
           <Component {...pageProps} />
         </Box>
+        <Footer />
       </ThemeProvider>
     </SessionProvider>
   );
