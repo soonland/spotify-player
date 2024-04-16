@@ -18,7 +18,7 @@ const TopMenuBar: FC = (): ReactElement => {
   return (
     <StyledFooter sx={{ flexGrow: 1 }} alignContent={"center"} alignItems={"center"} textAlign={"center"}>
       <Typography variant={"body2"}>© {new Date().getFullYear()}</Typography>
-      <Typography variant={"body2"}>Version: {versionNumber}</Typography>
+      <Typography variant={"body2"}>{versionNumber}</Typography>
     </StyledFooter>
   );
 };
