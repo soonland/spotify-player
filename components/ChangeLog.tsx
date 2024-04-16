@@ -109,6 +109,11 @@ const ChangeLog: FC = () => {
       date: "2024-04-14",
       features: ["Footer component"],
     },
+    {
+      version: "0.2.2",
+      date: "2024-04-16",
+      fixes: ["Various UI fixes such as versionNumber in footer, and favicon"],
+    },
   ];
 
   const StyledH2 = styled("h2")(({ theme }) => ({

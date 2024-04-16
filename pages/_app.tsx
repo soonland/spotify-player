@@ -14,6 +14,7 @@ function App({ Component, pageProps }: AppProps) {
         <Head>
           <title>Spotify App</title>
           <link rel="icon" href="/favicon.ico" />
+          <link rel="shortcut icon" href="/favicon.ico" />
         </Head>
         <CssBaseline />
         <TopMenuBar />
