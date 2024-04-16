@@ -139,10 +139,6 @@ const Home = () => {
         spotifyLink: track.external_urls.spotify,
       })) || [];
     // concat all rows
-    console.log("rows", rows);
-    console.log("rows2", rows2);
-    console.log("rows3", rows3);
-    console.log("data", data);
     return rows.concat(rows2).concat(rows3);
   };
 

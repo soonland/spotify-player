@@ -8,7 +8,6 @@ import Footer from "@/components/Footer";
 import MyProfile from "@/components/MyProfile";
 
 function App({ Component, pageProps }: AppProps) {
-  console.log("pageProps", pageProps);
   return (
     <SessionProvider session={pageProps.session}>
       <ThemeProvider theme={theme}>
