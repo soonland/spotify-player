@@ -16,15 +16,15 @@
         },
         "rows": {
             "type": {
-                "artist": "Artist",
+                "artist": "Artiste",
                 "album": "Album",
-                "track": "Track",
-                "playlist": "Playlist"
+                "track": "Chanson",
+                "playlist": "Liste de lecture"
             },
             "track": {
-                "trackName": "Track",
-                "trackDuration": "Duration",
-                "trackPreview": "Preview"
+                "trackName": "Chanson",
+                "trackDuration": "Durée",
+                "trackPreview": "Prévisualisation"
             }
         }
     },

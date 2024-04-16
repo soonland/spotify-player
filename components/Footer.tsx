@@ -1,4 +1,4 @@
-import { styled } from "@mui/material";
+import { Typography, styled } from "@mui/material";
 import Box from "@mui/material/Box";
 
 import { FC, ReactElement } from "react";
@@ -17,7 +17,8 @@ const TopMenuBar: FC = (): ReactElement => {
   const versionNumber = process.env.NEXT_PUBLIC_BUILD_TIMESTAMP ?? "local";
   return (
     <StyledFooter sx={{ flexGrow: 1 }} alignContent={"center"} alignItems={"center"} textAlign={"center"}>
-      {versionNumber} © {new Date().getFullYear()}
+      <Typography variant={"body2"}>© {new Date().getFullYear()}</Typography>
+      <Typography variant={"body2"}>Version: {versionNumber}</Typography>
     </StyledFooter>
   );
 };
