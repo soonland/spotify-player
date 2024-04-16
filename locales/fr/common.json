@@ -4,7 +4,8 @@
         "home": "Accueil",
         "top5": "Top 5",
         "myPlaylists": "Mes listes de lecture",
-        "spotifyApp": "Spotify Home page"
+        "spotifyApp": "Spotify Home page",
+        "changelog": "Change log"
     },
     "dataGrid": {
         "search": {
