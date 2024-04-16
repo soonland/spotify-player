@@ -14,7 +14,7 @@ const StyledFooter = styled(Box)(({ theme }) => ({
 }));
 
 const TopMenuBar: FC = (): ReactElement => {
-  const versionNumber = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA ?? "local";
+  const versionNumber = process.env.NEXT_PUBLIC_BUILD_TIMESTAMP ?? "local";
   return (
     <StyledFooter sx={{ flexGrow: 1 }} alignContent={"center"} alignItems={"center"} textAlign={"center"}>
       {versionNumber} © {new Date().getFullYear()}

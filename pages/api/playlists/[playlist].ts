@@ -23,7 +23,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const get = async () => {
     // Endpoint reference : https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks
     const { fields, playlist } = req.query;
-    console.log("fields", fields);
     return await fetchWebApi(`v1/playlists/${playlist}/tracks?fields=${fields}`, "GET");
   };
 

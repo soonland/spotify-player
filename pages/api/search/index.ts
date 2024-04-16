@@ -7,7 +7,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const { accessToken } = await getServerSession(req, res, authOptions);
 
   async function fetchWebApi(endpoint: string, method: string) {
-    console.log("req.query", req.query);
     const url = `https://api.spotify.com/${endpoint}?q=${req.query.q}&type=${(req.query.type as string).replaceAll(",", "%2C")}`;
     const res = await fetch(url, {
       headers: {
@@ -16,8 +15,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       method,
       // body:JSON.stringify(body)
     });
-    // console.log("url", url);
-    // console.log("res", await res.json());
     return await res.json();
   }
 
