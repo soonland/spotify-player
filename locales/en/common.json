@@ -7,6 +7,17 @@
         "spotifyApp": "Spotify Home page",
         "changelog": "Change Log"
     },
+    "common": {
+        "loading": "Loading",
+        "error": "Error",
+        "noDataFound": "No data found",
+        "notSignedIn": "You are not signed in",
+        "signedInAs": "Signed in as {{name}}",
+        "signOut": "Sign out",
+        "signIn": "Sign in",
+        "search": "Search",
+        "switchLanguage": "{{lang}}"
+    },
     "dataGrid": {
         "search": {
             "type": "Type",

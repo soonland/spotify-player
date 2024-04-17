@@ -25,10 +25,11 @@ const StyledGridOverlay = styled("div")(() => ({
 }));
 
 const CustomNoRowsOverlay = () => {
+  const { t } = useTranslation("common");
   return (
     <StyledGridOverlay>
       <SentimentVeryDissatisfiedIcon />
-      <Box sx={{ mt: 1 }}>No Rows</Box>
+      <Box sx={{ mt: 1 }}>{t("common.noDataFound")}</Box>
     </StyledGridOverlay>
   );
 };

@@ -2,8 +2,10 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import MyProfile from "../MyProfile";
 import { signIn, useSession } from "next-auth/react";
+import useTranslation from "next-translate/useTranslation";
 import userEvent from "@testing-library/user-event";
 jest.mock("next-auth/react");
+jest.mock("next-translate/useTranslation");
 
 const mockSessionAuth = {
   expires: new Date(Date.now() + 2 * 86400).toISOString(),
@@ -26,7 +28,16 @@ const mockSessionUnauth = {
   status: "unauthenticated",
 };
 
+const keyTranslated = {
+  "common.signedInAs": "Signed in as test",
+  "common.notSignedIn": "You are not signed in",
+  "common.signIn": "Sign in",
+};
+
 describe("MyProfile", () => {
+  beforeAll(() => {
+    (useTranslation as jest.Mock).mockReturnValue({ t: (k) => keyTranslated[k] });
+  });
   it("renders a Profile", async () => {
     (useSession as jest.Mock).mockReturnValue(mockSessionAuth);
 

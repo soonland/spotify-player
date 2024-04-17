@@ -8,6 +8,7 @@ jest.mock("next-auth/react");
 
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(),
+  usePathname: jest.fn(),
 }));
 
 describe("TopMenuBar", () => {
@@ -40,12 +41,21 @@ describe("TopMenuBar", () => {
     const appBar = screen.getByTestId("testid.appBar");
     expect(appBar).toBeInTheDocument();
 
+    const accountButton = screen.getByTestId("testid.accountButton");
+    expect(accountButton).toBeInTheDocument();
+
+    await act(async () => {
+      await userEvent.click(accountButton);
+    });
+
+    const userMenu = screen.getByTestId("testid.userMenu");
+    expect(userMenu).toBeInTheDocument();
+
     const logout = screen.getByTestId("testid.logout");
     expect(logout).toBeInTheDocument();
 
-    await act(async () => {
-      await userEvent.click(screen.getByTestId("testid.menuButton"));
-    });
+    await userEvent.click(screen.getByTestId("testid.menuButton"));
+
     expect(screen.getByTestId("testid.drawer")).toBeInTheDocument();
   });
 
