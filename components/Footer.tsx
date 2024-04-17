@@ -13,7 +13,7 @@ const StyledFooter = styled(Box)(({ theme }) => ({
   width: "100%",
 }));
 
-const TopMenuBar: FC = (): ReactElement => {
+const Footer: FC = (): ReactElement => {
   const versionNumber = process.env.NEXT_PUBLIC_BUILD_TIMESTAMP ?? "local";
   return (
     <StyledFooter sx={{ flexGrow: 1 }} alignContent={"center"} alignItems={"center"} textAlign={"center"}>
@@ -23,4 +23,4 @@ const TopMenuBar: FC = (): ReactElement => {
   );
 };
 
-export default TopMenuBar;
+export default Footer;
