@@ -79,7 +79,7 @@ const SearchTypeSelect: FC<SearchTypeSelectProps> = ({ onSelect }) => {
         id="basic-menu"
         anchorEl={anchorEl}
         open={open}
-        onClose={handleClose}
+        onClose={() => handleClose("")}
         MenuListProps={{
           "aria-labelledby": "basic-button",
         }}
