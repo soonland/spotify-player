@@ -28,6 +28,11 @@ const mockSessionUnauth = {
   status: "unauthenticated",
 };
 
+const mockSessionLoading = {
+  ...mockSessionAuth,
+  status: "loading",
+};
+
 const keyTranslated = {
   "common.signedInAs": "Signed in as test",
   "common.notSignedIn": "You are not signed in",
@@ -62,6 +67,15 @@ describe("MyProfile", () => {
 
     const text3 = screen.queryByText("Sign out");
     expect(text3).toBeNull();
+  });
+
+  it("renders a Loading", async () => {
+    (useSession as jest.Mock).mockReturnValue(mockSessionLoading);
+
+    render(<MyProfile />);
+
+    const skeletonLoading = screen.getByTestId("testid.loading");
+    expect(skeletonLoading).toBeInTheDocument();
   });
 
   it("renders a Not Signed", async () => {

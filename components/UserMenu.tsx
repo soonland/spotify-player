@@ -6,7 +6,7 @@ import { signOut, useSession } from "next-auth/react";
 import useTranslation from "next-translate/useTranslation";
 
 const UserMenu = () => {
-  const { t } = useTranslation("common");
+  const { t, lang } = useTranslation("common");
   const session = useSession();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -19,7 +19,9 @@ const UserMenu = () => {
   };
 
   const openMySpotifyAccount = () => {
-    window.open("https://www.spotify.com/account/overview/", "_blank", "noopener, noreferrer");
+    let urlLang = "ca-fr";
+    if (lang === "en") urlLang = "ca-en";
+    window.open(`https://www.spotify.com/${urlLang}/account/overview/`, "_blank", "noopener, noreferrer");
   };
 
   const openMySpotifyProfile = () => {

@@ -114,6 +114,16 @@ const ChangeLog: FC = () => {
       date: "2024-04-16",
       fixes: ["Various UI fixes such as versionNumber in footer, and favicon"],
     },
+    {
+      version: "0.2.3",
+      date: "2024-04-20",
+      features: [
+        "Added My Spotify Account Link",
+        "Added My Spotify Profile Link",
+        "Created a DataGrid reusable component with translations",
+      ],
+      fixes: ["Refactored UserMenu to use a more generic approach", "Fixed bug in MyProfile component"],
+    },
   ];
 
   const StyledH2 = styled("h2")(({ theme }) => ({
