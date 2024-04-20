@@ -16,7 +16,9 @@
         "signOut": "Déconnexion",
         "signIn": "Connexion",
         "search": "Rechercher",
-        "switchLanguage": "{{lang}}"
+        "switchLanguage": "{{lang}}",
+        "mySpotifyAccount": "Mon compte Spotify",
+        "mySpotifyProfile": "Mon profil Spotify"
     },
     "dataGrid": {
         "search": {

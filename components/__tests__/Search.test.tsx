@@ -29,5 +29,8 @@ describe("Search", () => {
     await userEvent.type(screen.getByTestId("testid.search"), "test");
     await userEvent.keyboard("{Enter}");
     expect(mockRouter.push).toHaveBeenCalledWith("/?q=test&type=album");
+    await userEvent.clear(screen.getByTestId("testid.search").getElementsByTagName("input")[0]);
+    await userEvent.keyboard("{Enter}");
+    expect(mockRouter.push).toHaveBeenCalledTimes(2);
   });
 });
