@@ -2,15 +2,16 @@ import { useSession } from "next-auth/react";
 import { Box, Grid, styled } from "@mui/material";
 import Image from "next/image";
 import useSWRMutation from "swr/mutation";
-import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
+import { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { ParsedUrlQuery } from "querystring";
 import { ISearch } from "@/models/types";
+import EnhancedDataGrid from "@/components/EnhancedDataGrid";
 
-const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
+const StyledDataGrid = styled(EnhancedDataGrid)(({ theme }) => ({
   "& .MuiDataGrid-columnHeaders": {
     backgroundColor: theme.palette.mode === "light" ? "#fafafa" : "#1d1d1d",
   },
@@ -28,7 +29,7 @@ const CustomNoRowsOverlay = () => {
   const { t } = useTranslation("common");
   return (
     <StyledGridOverlay>
-      <SentimentVeryDissatisfiedIcon />
+      <SentimentVeryDissatisfiedIcon fontSize="large" />
       <Box sx={{ mt: 1 }}>{t("common.noDataFound")}</Box>
     </StyledGridOverlay>
   );

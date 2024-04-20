@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Skeleton } from "@mui/material";
 import { signIn, useSession } from "next-auth/react";
 import { FC, ReactElement } from "react";
 import Image from "next/image";
@@ -18,6 +18,10 @@ const MyProfile: FC = (): ReactElement => {
         </Button>
       </>
     );
+  }
+
+  if (session.status === "loading") {
+    return <Skeleton variant="rectangular" width={210} height={60} data-testid="testid.loading" />;
   }
 
   return (

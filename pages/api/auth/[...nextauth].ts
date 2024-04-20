@@ -2,8 +2,8 @@
 import NextAuth from "next-auth";
 import Spotify from "next-auth/providers/spotify";
 
-const clientId = process.env.SPOTIFY_CLIENT_ID || "";
-const clientSecret = process.env.SPOTIFY_CLIENT_SECRET || "";
+const clientId = process.env.SPOTIFY_CLIENT_ID ?? "";
+const clientSecret = process.env.SPOTIFY_CLIENT_SECRET ?? "";
 /**
  * Takes a token, and returns a new token with updated
  * `accessToken` and `accessTokenExpires`. If an error occurs,
@@ -63,8 +63,8 @@ export const authOptions = {
   // },
   providers: [
     Spotify({
-      clientId: process.env.SPOTIFY_CLIENT_ID || "",
-      clientSecret: process.env.SPOTIFY_CLIENT_SECRET || "",
+      clientId: process.env.SPOTIFY_CLIENT_ID ?? "",
+      clientSecret: process.env.SPOTIFY_CLIENT_SECRET ?? "",
       authorization: `https://accounts.spotify.com/authorize?scope=${scopes}`,
     }),
   ],
@@ -91,6 +91,7 @@ export const authOptions = {
     async session({ session, token }) {
       session.user = token.user;
       session.accessToken = token.accessToken;
+      session.user.id = token.user.id;
       session.error = token.error;
 
       return session;
