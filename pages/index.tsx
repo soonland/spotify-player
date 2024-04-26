@@ -2,7 +2,7 @@ import { useSession } from "next-auth/react";
 import { Box, Grid, Link, styled } from "@mui/material";
 import Image from "next/image";
 import useSWRMutation from "swr/mutation";
-import { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
+import { GridAlignment, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
@@ -54,49 +54,35 @@ const Home = () => {
     page: 0,
   });
 
-  const columns: GridColDef[] = [
+  const createColumn = (
+    field: string,
+    headerName: string,
+    width: number,
+    align: GridAlignment | undefined = "center",
+  ): GridColDef => {
+    return {
+      field,
+      headerName: t(`dataGrid.search.${field}`),
+      width,
+      headerAlign: align,
+      align,
+    };
+  };
+
+  const columns = [
+    createColumn("type", "type", 100),
+    createColumn("artistName", "artistName", 150),
+    createColumn("albumName", "albumName", 150),
+    createColumn("trackName", "trackName", 150),
     {
-      field: "type",
-      headerName: t("dataGrid.search.type"),
-      width: 100,
-      headerAlign: "center",
-      align: "center",
-      valueGetter: (value) => {
-        return t(`dataGrid.rows.type.${value}`);
-      },
-    },
-    {
-      field: "imgCover",
-      headerName: t("dataGrid.search.imgCover"),
-      width: 90,
-      headerAlign: "center",
+      ...createColumn("imgCover", "imgCover", 150),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       renderCell: (params: GridRenderCellParams<any, string>) => (
         <Image src={params.value as string} alt="" width={80} height={80} />
       ),
     },
     {
-      field: "artistName",
-      headerName: t("dataGrid.search.artistName"),
-      width: 150,
-      headerAlign: "center",
-    },
-    {
-      field: "albumName",
-      headerName: t("dataGrid.search.albumName"),
-      width: 150,
-      headerAlign: "center",
-    },
-    {
-      field: "trackName",
-      headerName: t("dataGrid.search.trackName"),
-      width: 150,
-      headerAlign: "center",
-    },
-    {
-      field: "spotifyLink",
-      headerName: t("dataGrid.search.spotifyLink"),
-      headerAlign: "center",
+      ...createColumn("spotifyLink", "spotifyLink", 150),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       renderCell: (params: GridRenderCellParams<any, string>) => (
         <a href={params.value as string} target="_blank" rel="noopener noreferrer">
@@ -105,9 +91,7 @@ const Home = () => {
       ),
     },
     {
-      field: "recommandationLink",
-      headerName: t("dataGrid.search.recommandationLink"),
-      headerAlign: "center",
+      ...createColumn("recommandationLink", "recommandationLink", 150),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       renderCell: (params: GridRenderCellParams<any, string>) => {
         return <Link href={`/recommendations/${params.row.type}/${params.row.id}`}>Click Me</Link>;
