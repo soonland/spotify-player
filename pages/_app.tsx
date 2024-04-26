@@ -9,7 +9,7 @@ import MyProfile from "@/components/MyProfile";
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <SessionProvider session={pageProps.session}>
+    <SessionProvider session={pageProps.session} refetchOnWindowFocus={false}>
       <ThemeProvider theme={theme}>
         <Head>
           <title>Spotify App</title>

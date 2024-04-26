@@ -7,6 +7,14 @@
         "spotifyApp": "Spotify Home page",
         "changelog": "Change log"
     },
+    "cart": {
+        "cart": "Panier",
+        "artistName": "Artiste",
+        "albumName": "Album",
+        "trackName": "Chanson",
+        "listen": "Ecouter",
+        "remove": "Supprimer"
+    },
     "common": {
         "loading": "Chargement ...",
         "error": "Erreur",
@@ -24,8 +32,12 @@
         "search": {
             "type": "Type",
             "artistName": "Artiste",
-            "albumCover": "Album",
-            "spotifyLink": "Spotify"
+            "albumName": "Album",
+            "trackName": "Chanson",
+            "imgCover": "Couverture",
+            "spotifyLink": "Spotify",
+            "recommandationLink": "Recommandation",
+            "addToPlaylist": "Ajouter à la liste de lecture"
         },
         "rows": {
             "type": {
