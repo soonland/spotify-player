@@ -20,12 +20,24 @@
         "mySpotifyAccount": "My Spotify Account",
         "mySpotifyProfile": "My Spotify Profile"
     },
+    "queue": {
+        "queue": "Queue ({{count}})",
+        "artistName": "Artist",
+        "albumName": "Album",
+        "trackName": "Track",
+        "listen": "Listen",
+        "remove": "Remove"
+    },
     "dataGrid": {
         "search": {
             "type": "Type",
             "artistName": "Artist",
-            "albumCover": "Album",
-            "spotifyLink": "Spotify"
+            "albumName": "Album",
+            "trackName": "Track",
+            "imgCover": "Cover",
+            "spotifyLink": "Spotify",
+            "recommandationLink": "Recommandation",
+            "addToPlaylist": "Add to playlist"
         },
         "rows": {
             "type": {

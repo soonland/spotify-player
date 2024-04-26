@@ -86,3 +86,18 @@ export interface ISearch {
   albums: ISearchAlbums;
   tracks: ISearchTracks;
 }
+
+export interface IQueueItem {
+  type: string;
+  id: string;
+  artistName: string;
+  albumName: string;
+  trackName: string;
+  imgCover: string;
+  spotifyLink: string;
+}
+
+export interface IQueue {
+  queue: IQueueItem[];
+  removeFromQueue: (itemId: string) => void;
+}
