@@ -20,8 +20,8 @@
         "mySpotifyAccount": "My Spotify Account",
         "mySpotifyProfile": "My Spotify Profile"
     },
-    "cart": {
-        "cart": "Cart ({{count}})",
+    "queue": {
+        "queue": "Queue ({{count}})",
         "artistName": "Artist",
         "albumName": "Album",
         "trackName": "Track",

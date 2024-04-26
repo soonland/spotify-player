@@ -10,8 +10,8 @@ import { SentimentVeryDissatisfied as SentimentVeryDissatisfiedIcon, Add as AddI
 import { ParsedUrlQuery } from "querystring";
 import { ITrack } from "@/models/types";
 import EnhancedDataGrid from "@/components/EnhancedDataGrid";
-import { useCartTracks } from "@/hooks/useCart";
-import Cart from "@/components/Cart";
+import { useQueueTracks } from "@/hooks/useQueue";
+import Queue from "@/components/Queue";
 
 const StyledDataGrid = styled(EnhancedDataGrid)(({ theme }) => ({
   "& .MuiDataGrid-columnHeaders": {
@@ -40,7 +40,7 @@ const CustomNoRowsOverlay = () => {
 const RecommendationsPage = () => {
   const session = useSession();
   const router = useRouter();
-  const { cart, addToCart: addToCartHook, removeFromCart } = useCartTracks();
+  const { queue, addToQueue: addToQueueHook, removeFromQueue } = useQueueTracks();
   const { t } = useTranslation("common");
 
   const fetcher = async (url: string, { arg }: { arg: { type: string; spotifyId: string } }) => {
@@ -126,7 +126,7 @@ const RecommendationsPage = () => {
       align: "center",
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       renderCell: (params: GridRenderCellParams<any, string>) => (
-        <IconButton onClick={() => addToCartHook(params.row)}>
+        <IconButton onClick={() => addToQueueHook(params.row)}>
           <AddIcon />
         </IconButton>
       ),
@@ -166,7 +166,7 @@ const RecommendationsPage = () => {
       <Grid container flexDirection={"column"} spacing={2}>
         {session.status === "authenticated" && (
           <Grid item>
-            <Cart cart={cart} removeFromCart={removeFromCart} />
+            <Queue queue={queue} removeFromQueue={removeFromQueue} />
             <StyledDataGrid
               autoHeight
               rowHeight={80}

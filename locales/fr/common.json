@@ -7,8 +7,8 @@
         "spotifyApp": "Spotify Home page",
         "changelog": "Change log"
     },
-    "cart": {
-        "cart": "Panier",
+    "queue": {
+        "queue": "File d'attente ({{count}})",
         "artistName": "Artiste",
         "albumName": "Album",
         "trackName": "Chanson",
@@ -37,7 +37,7 @@
             "imgCover": "Couverture",
             "spotifyLink": "Spotify",
             "recommandationLink": "Recommandation",
-            "addToPlaylist": "Ajouter à la liste de lecture"
+            "addToPlaylist": "Ajouter à la file d'attente"
         },
         "rows": {
             "type": {

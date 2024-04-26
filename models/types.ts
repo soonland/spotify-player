@@ -87,7 +87,7 @@ export interface ISearch {
   tracks: ISearchTracks;
 }
 
-export interface ICartItem {
+export interface IQueueItem {
   type: string;
   id: string;
   artistName: string;
@@ -97,7 +97,7 @@ export interface ICartItem {
   spotifyLink: string;
 }
 
-export interface ICart {
-  cart: ICartItem[];
-  removeFromCart: (itemId: string) => void;
+export interface IQueue {
+  queue: IQueueItem[];
+  removeFromQueue: (itemId: string) => void;
 }

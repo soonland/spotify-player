@@ -1,42 +1,43 @@
-import { ICart } from "@/models/types";
+import { IQueue } from "@/models/types";
 import { Accordion, AccordionDetails, AccordionSummary, Box, IconButton, styled } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { FC, useEffect, useState } from "react";
-import { PlayCircle as PlayCircleIcon, ExpandMore as ExpandMoreIcon, Clear as ClearIcon } from "@mui/icons-material";
+import { ExpandMore as ExpandMoreIcon, Clear as ClearIcon } from "@mui/icons-material";
 
 const StyledTable = styled("table")(() => ({
   borderCollapse: "collapse",
   width: "100%",
 }));
 
-const Cart: FC<ICart> = ({ cart, removeFromCart }) => {
+const Queue: FC<IQueue> = ({ queue, removeFromQueue }) => {
   const { t } = useTranslation("common");
   const [open, setOpen] = useState(false);
   useEffect(() => {
-    if (cart?.length > 0) {
+    if (queue?.length > 0) {
       setOpen(true);
     } else {
       setOpen(false);
     }
-  }, [cart]);
+  }, [queue]);
 
   return (
     <Box sx={{ mb: 3 }}>
       <Accordion disableGutters elevation={2} expanded={open} onChange={() => setOpen(!open)}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>{t("cart.cart", { count: cart?.length })}</AccordionSummary>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          {t("queue.queue", { count: queue?.length })}
+        </AccordionSummary>
         <AccordionDetails>
           <StyledTable border={1} className="tableCss">
             <thead>
               <tr>
-                <th>{t("cart.artistName")}</th>
-                <th>{t("cart.albumName")}</th>
-                <th>{t("cart.trackName")}</th>
-                <th>{t("cart.listen")}</th>
-                <th>{t("cart.remove")}</th>
+                <th>{t("queue.artistName")}</th>
+                <th>{t("queue.albumName")}</th>
+                <th>{t("queue.trackName")}</th>
+                <th>{t("queue.remove")}</th>
               </tr>
             </thead>
             <tbody>
-              {cart?.map((track) => {
+              {queue?.map((track) => {
                 // display in a table
                 return (
                   <tr key={track.id}>
@@ -44,13 +45,7 @@ const Cart: FC<ICart> = ({ cart, removeFromCart }) => {
                     <td>{track.albumName}</td>
                     <td>{track.trackName}</td>
                     <td align="center">
-                      <IconButton>
-                        <PlayCircleIcon />
-                      </IconButton>
-                      {/* <a href={track.spotifyLink} target="_blank" rel="noreferrer"> */}
-                    </td>
-                    <td align="center">
-                      <IconButton onClick={() => removeFromCart(track.id)}>
+                      <IconButton onClick={() => removeFromQueue(track.id)}>
                         <ClearIcon />
                       </IconButton>
                     </td>
@@ -65,4 +60,4 @@ const Cart: FC<ICart> = ({ cart, removeFromCart }) => {
   );
 };
 
-export default Cart;
+export default Queue;

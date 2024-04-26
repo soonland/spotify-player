@@ -127,7 +127,7 @@ const ChangeLog: FC = () => {
     {
       version: "0.2.4",
       date: "2024-04-27",
-      features: ["Added Spotify Recommendations", "Added a cart to store tracks"],
+      features: ["Added Spotify Recommendations", "Added a queue to store tracks"],
       fixes: ["Fixed DataGrid alternate row colors"],
     },
   ];
