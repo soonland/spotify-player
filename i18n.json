@@ -4,7 +4,6 @@
         "fr"
     ],
     "defaultLocale": "en",
-    "defaultNS": "common",
     "pages": {
         "*": [
             "common"
