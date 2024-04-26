@@ -2,7 +2,7 @@ import { useSession } from "next-auth/react";
 import { Box, Grid, Link, styled } from "@mui/material";
 import Image from "next/image";
 import useSWRMutation from "swr/mutation";
-import { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
+import { GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
@@ -10,6 +10,7 @@ import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDiss
 import { ParsedUrlQuery } from "querystring";
 import { ISearch } from "@/models/types";
 import EnhancedDataGrid from "@/components/EnhancedDataGrid";
+import { useCreateColumn } from "@/utils/createColumns";
 
 const StyledGridOverlay = styled("div")(() => ({
   display: "flex",
@@ -33,6 +34,7 @@ const Home = () => {
   const session = useSession();
   const router = useRouter();
   const { t } = useTranslation("common");
+  const createColumn = useCreateColumn();
 
   const fetcher = async (url: string, { arg }: { arg: { searchType: string; searchString: string } }) => {
     if (arg.searchType === undefined) {
@@ -55,64 +57,62 @@ const Home = () => {
   });
 
   const columns: GridColDef[] = [
-    {
+    createColumn({
       field: "type",
-      headerName: t("dataGrid.search.type"),
-      width: 100,
-      headerAlign: "center",
-      align: "center",
-      valueGetter: (value) => {
-        return t(`dataGrid.rows.type.${value}`);
+      options: {
+        width: 100,
+        align: "center",
+        valueGetter: (value) => {
+          return t(`dataGrid.rows.type.${value}`);
+        },
       },
-    },
-    {
+    }),
+    createColumn({
       field: "imgCover",
-      headerName: t("dataGrid.search.imgCover"),
-      width: 90,
-      headerAlign: "center",
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      renderCell: (params: GridRenderCellParams<any, string>) => (
-        <Image src={params.value as string} alt="" width={80} height={80} />
-      ),
-    },
-    {
-      field: "artistName",
-      headerName: t("dataGrid.search.artistName"),
-      width: 150,
-      headerAlign: "center",
-    },
-    {
-      field: "albumName",
-      headerName: t("dataGrid.search.albumName"),
-      width: 150,
-      headerAlign: "center",
-    },
-    {
-      field: "trackName",
-      headerName: t("dataGrid.search.trackName"),
-      width: 150,
-      headerAlign: "center",
-    },
-    {
-      field: "spotifyLink",
-      headerName: t("dataGrid.search.spotifyLink"),
-      headerAlign: "center",
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      renderCell: (params: GridRenderCellParams<any, string>) => (
-        <a href={params.value as string} target="_blank" rel="noopener noreferrer">
-          Click Me
-        </a>
-      ),
-    },
-    {
-      field: "recommandationLink",
-      headerName: t("dataGrid.search.recommandationLink"),
-      headerAlign: "center",
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      renderCell: (params: GridRenderCellParams<any, string>) => {
-        return <Link href={`/recommendations/${params.row.type}/${params.row.id}`}>Click Me</Link>;
+      options: {
+        width: 90,
+        renderCell: (params) => <Image src={params.value as string} alt="" width={80} height={80} />,
       },
-    },
+    }),
+    createColumn({
+      field: "artistName",
+      options: {
+        width: 150,
+        align: "center",
+      },
+    }),
+    createColumn({
+      field: "albumName",
+      options: {
+        width: 150,
+        align: "center",
+      },
+    }),
+    createColumn({
+      field: "trackName",
+      options: {
+        width: 150,
+        align: "center",
+      },
+    }),
+    createColumn({
+      field: "spotifyLink",
+      options: {
+        align: "center",
+        renderCell: (params) => (
+          <a href={params.value as string} target="_blank" rel="noopener noreferrer">
+            Click Me
+          </a>
+        ),
+      },
+    }),
+    createColumn({
+      field: "recommandationLink",
+      options: {
+        align: "center",
+        renderCell: (params) => <Link href={`/recommendations/${params.row.type}/${params.row.id}`}>Click Me</Link>,
+      },
+    }),
   ];
 
   const handleSearch = (searchQuery: ParsedUrlQuery) => {
