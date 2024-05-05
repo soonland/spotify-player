@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 import { IQueueItem } from "@/models/types";
 
 interface IQueueContext {
@@ -29,16 +29,6 @@ export const QueueProvider = ({ children }) => {
     sessionStorage.setItem("queue", JSON.stringify(queue));
   }, [queue]);
 
-  // Function to add an item to the queue
-  const addToQueue = (item: IQueueItem) => {
-    // Check if the item is already in the queue
-    const itemExists = queue.find((queueItem) => queueItem.id === item.id);
-    if (itemExists) {
-      return;
-    }
-    setQueue([...queue, item]);
-  };
-
   // Function to clear the entire queue
   const clearQueue = () => {
     setQueue([]);
@@ -50,7 +40,17 @@ export const QueueProvider = ({ children }) => {
     setQueue(updatedQueue);
   };
 
-  return (
-    <QueueContext.Provider value={{ queue, addToQueue, clearQueue, removeFromQueue }}>{children}</QueueContext.Provider>
-  );
+  const context = useMemo(() => {
+    // Function to add an item to the queue
+    const addToQueue = (item: IQueueItem) => {
+      // Check if the item is already in the queue
+      const itemExists = queue.find((queueItem) => queueItem.id === item.id);
+      if (itemExists) {
+        return;
+      }
+      setQueue([...queue, item]);
+    };
+    return { queue, addToQueue, clearQueue, removeFromQueue };
+  }, [queue]);
+  return <QueueContext.Provider value={context}>{children}</QueueContext.Provider>;
 };
