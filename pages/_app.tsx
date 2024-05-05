@@ -6,6 +6,7 @@ import TopMenuBar from "@/components/TopMenuBar";
 import Head from "next/head";
 import Footer from "@/components/Footer";
 import MyProfile from "@/components/MyProfile";
+import { QueueProvider } from "@/components/context/QueueContext";
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -20,8 +21,9 @@ function App({ Component, pageProps }: AppProps) {
         <TopMenuBar />
         <Box padding={4} mb={6}>
           {pageProps.showProfile && <MyProfile />}
-          {/* <MyProfile /> */}
-          <Component {...pageProps} />
+          <QueueProvider>
+            <Component {...pageProps} />
+          </QueueProvider>
         </Box>
         <Footer />
       </ThemeProvider>

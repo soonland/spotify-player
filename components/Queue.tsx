@@ -1,15 +1,17 @@
 import { IQueue } from "@/models/types";
 import { Accordion, AccordionDetails, AccordionSummary, Box, IconButton, styled } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import { FC, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { ExpandMore as ExpandMoreIcon, Clear as ClearIcon } from "@mui/icons-material";
+import { QueueContext } from "./context/QueueContext";
 
 const StyledTable = styled("table")(() => ({
   borderCollapse: "collapse",
   width: "100%",
 }));
 
-const Queue: FC<IQueue> = ({ queue, removeFromQueue }) => {
+const Queue: FC<IQueue> = () => {
+  const { queue, removeFromQueue } = useContext(QueueContext);
   const { t } = useTranslation("common");
   const [open, setOpen] = useState(false);
   useEffect(() => {
