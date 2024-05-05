@@ -51,7 +51,12 @@ const SearchDataGrid = ({ isMutating, data }) => {
   };
 
   const columns = [
-    createColumn("type", "type", 100),
+    {
+      ...createColumn("type", "type", 100),
+      valueGetter: (value) => {
+        return t(`dataGrid.rows.type.${value}`);
+      },
+    },
     createColumn("artistName", "artistName", 150),
     createColumn("albumName", "albumName", 150),
     createColumn("trackName", "trackName", 150),
