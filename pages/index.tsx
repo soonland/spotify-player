@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
 import SearchDataGrid from "@/components/Grid/SearchDataGrid";
 import { ISearch } from "@/models/types";
+import Queue from "@/components/Queue";
 
 const Home = () => {
   const session = useSession();
@@ -87,6 +88,7 @@ const Home = () => {
           <Grid container flexDirection={"column"} spacing={2}>
             {session.status === "authenticated" && (
               <Grid item>
+                <Queue />
                 <SearchDataGrid isMutating={isMutating} data={convertResultsToDataGridRows(data)} />
               </Grid>
             )}

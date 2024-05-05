@@ -97,7 +97,4 @@ export interface IQueueItem {
   spotifyLink: string;
 }
 
-export interface IQueue {
-  queue: IQueueItem[];
-  removeFromQueue: (itemId: string) => void;
-}
+export interface IQueue {}

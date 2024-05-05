@@ -2,11 +2,11 @@ import useTranslation from "next-translate/useTranslation";
 import EnhancedDataGrid from "./EnhancedDataGrid";
 import { Box, IconButton, Link, styled } from "@mui/material";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Image from "next/image";
 import AddIcon from "@mui/icons-material/Add";
 import { GridAlignment, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
-import { useQueueTracks } from "@/hooks/useQueue";
+import { QueueContext } from "../context/QueueContext";
 
 const StyledGridOverlay = styled("div")(() => ({
   display: "flex",
@@ -28,7 +28,7 @@ const CustomNoRowsOverlay = () => {
 
 const SearchDataGrid = ({ isMutating, data }) => {
   const { t } = useTranslation("common");
-  const { addToQueue: addToQueueHook } = useQueueTracks();
+  const { addToQueue } = useContext(QueueContext);
 
   const [paginationModel, setPaginationModel] = useState({
     pageSize: 5,
@@ -82,7 +82,7 @@ const SearchDataGrid = ({ isMutating, data }) => {
       ...createColumn("addToPlaylist", "addToPlaylist", 150),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       renderCell: (params: GridRenderCellParams<any, string>) => (
-        <IconButton onClick={() => addToQueueHook(params.row)}>
+        <IconButton onClick={() => addToQueue(params.row)}>
           <AddIcon />
         </IconButton>
       ),

@@ -4,7 +4,6 @@ import useSWRMutation from "swr/mutation";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
-import { useQueueTracks } from "@/hooks/useQueue";
 import Queue from "@/components/Queue";
 import SearchDataGrid from "@/components/Grid/SearchDataGrid";
 import { ITrack } from "@/models/types";
@@ -12,7 +11,6 @@ import { ITrack } from "@/models/types";
 const RecommendationsPage = () => {
   const session = useSession();
   const router = useRouter();
-  const { queue, removeFromQueue } = useQueueTracks();
 
   const fetcher = async (url: string, { arg }: { arg: { type: string; spotifyId: string } }) => {
     if (arg.type === undefined) {
@@ -59,7 +57,7 @@ const RecommendationsPage = () => {
       <Grid container flexDirection={"column"} spacing={2}>
         {session.status === "authenticated" && (
           <Grid item>
-            <Queue queue={queue} removeFromQueue={removeFromQueue} />
+            <Queue />
             <SearchDataGrid isMutating={isMutating} data={convertResultsToDataGridRows(data)} />
           </Grid>
         )}
