@@ -130,6 +130,11 @@ const ChangeLog: FC = () => {
       features: ["Added Spotify Recommendations", "Added a queue to store tracks"],
       fixes: ["Fixed DataGrid alternate row colors"],
     },
+    {
+      version: "0.2.5",
+      date: "2024-05-05",
+      features: ["Refactored queue to use a context", "Added a queue page to display tracks"],
+    },
   ];
 
   const StyledH2 = styled("h2")(({ theme }) => ({
