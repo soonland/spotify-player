@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const nextTranslate = require("next-translate-plugin");
-const dotenv = require("dotenv");
 const dayjs = require("dayjs");
 const utc = require("dayjs/plugin/utc");
 const timezone = require("dayjs/plugin/timezone");
-dotenv.config();
+
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
