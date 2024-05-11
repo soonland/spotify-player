@@ -5,7 +5,8 @@
         "top5": "Top 5",
         "myPlaylists": "My Playlists",
         "spotifyApp": "Spotify Home page",
-        "changelog": "Change Log"
+        "changelog": "Change Log",
+        "changeThemeMode": "Change Theme Mode"
     },
     "common": {
         "loading": "Loading",

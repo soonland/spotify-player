@@ -6,7 +6,9 @@ import { useContext, useState } from "react";
 import Image from "next/image";
 import AddIcon from "@mui/icons-material/Add";
 import { GridAlignment, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
-import { QueueContext } from "../context/QueueContext";
+import { QueueContext } from "../context/QueueProvider";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
 
 const StyledGridOverlay = styled("div")(() => ({
   display: "flex",
@@ -72,7 +74,9 @@ const SearchDataGrid = ({ isMutating, data }) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       renderCell: (params: GridRenderCellParams<any, string>) => (
         <a href={params.value as string} target="_blank" rel="noopener noreferrer">
-          Click Me
+          <IconButton color="primary">
+            <PlayArrowIcon />
+          </IconButton>
         </a>
       ),
     },
@@ -80,14 +84,20 @@ const SearchDataGrid = ({ isMutating, data }) => {
       ...createColumn("recommandationLink", "recommandationLink", 150),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       renderCell: (params: GridRenderCellParams<any, string>) => {
-        return <Link href={`/recommendations/${params.row.type}/${params.row.id}`}>Click Me</Link>;
+        return (
+          <IconButton color="primary">
+            <Link href={`/recommendations/${params.row.type}/${params.row.id}`}>
+              <LibraryMusicIcon />
+            </Link>
+          </IconButton>
+        );
       },
     },
     {
       ...createColumn("addToPlaylist", "addToPlaylist", 150),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       renderCell: (params: GridRenderCellParams<any, string>) => (
-        <IconButton onClick={() => addToQueue(params.row)}>
+        <IconButton onClick={() => addToQueue(params.row)} color="primary">
           <AddIcon />
         </IconButton>
       ),

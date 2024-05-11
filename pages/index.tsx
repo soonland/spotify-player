@@ -1,5 +1,5 @@
 import { useSession } from "next-auth/react";
-import { Box, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import useSWRMutation from "swr/mutation";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
@@ -41,7 +41,6 @@ const Home = () => {
   }, [router.query.q, router.query.type]);
 
   const convertResultsToDataGridRows = (data: ISearch) => {
-    console.log("data", data);
     const rows =
       data?.artists?.items?.map((artist) => ({
         type: artist.type,
@@ -75,27 +74,18 @@ const Home = () => {
         spotifyLink: track.external_urls.spotify,
       })) || [];
     // concat all rows
-    console.log("rows", rows);
-    console.log("rows2", rows2);
-    console.log("rows3", rows3);
     return rows.concat(rows2).concat(rows3);
   };
 
   return (
-    <div>
-      <main>
-        <Box>
-          <Grid container flexDirection={"column"} spacing={2}>
-            {session.status === "authenticated" && (
-              <Grid item>
-                <Queue />
-                <SearchDataGrid isMutating={isMutating} data={convertResultsToDataGridRows(data)} />
-              </Grid>
-            )}
-          </Grid>
-        </Box>
-      </main>
-    </div>
+    <Grid container flexDirection={"column"} spacing={2}>
+      {session.status === "authenticated" && (
+        <Grid item>
+          <Queue />
+          <SearchDataGrid isMutating={isMutating} data={convertResultsToDataGridRows(data)} />
+        </Grid>
+      )}
+    </Grid>
   );
 };
 

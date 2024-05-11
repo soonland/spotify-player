@@ -2,17 +2,14 @@ import { FC } from "react";
 import { DataGrid, DataGridProps, gridClasses } from "@mui/x-data-grid";
 import { enUS, frFR } from "@mui/x-data-grid/locales";
 import useTranslation from "next-translate/useTranslation";
-import { styled } from "@mui/material";
+import { darken, styled } from "@mui/material";
 
 const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
-  "& .MuiDataGrid-columnHeaders": {
-    backgroundColor: theme.palette.mode === "light" ? "#fafafa" : "#1d1d1d",
-  },
   [`& .${gridClasses.row}.even`]: {
-    backgroundColor: theme.palette.mode === "light" ? "#f5f5f5" : "#333",
+    backgroundColor: darken(theme.palette.background.paper, 0.2),
   },
   [`& .${gridClasses.row}.odd`]: {
-    backgroundColor: theme.palette.mode === "light" ? "#e8e8e8" : "#292929",
+    backgroundColor: darken(theme.palette.background.paper, 0.3),
   },
 }));
 

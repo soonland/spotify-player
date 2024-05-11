@@ -135,6 +135,11 @@ const ChangeLog: FC = () => {
       date: "2024-05-05",
       features: ["Refactored queue to use a context", "Added a queue page to display tracks"],
     },
+    {
+      version: "0.2.6",
+      date: "2024-05-10",
+      features: ["Created a context for darkMode theme switcher"],
+    },
   ];
 
   const StyledH2 = styled("h2")(({ theme }) => ({

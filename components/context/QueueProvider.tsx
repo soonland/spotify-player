@@ -35,8 +35,10 @@ export const QueueProvider = ({ children }) => {
   };
 
   // Function to remove a specific item from the queue
-  const removeFromQueue = (itemId) => {
-    const updatedQueue = JSON.parse(sessionStorage.getItem("queue") as string).filter((item) => item.id !== itemId);
+  const removeFromQueue = (itemId: string) => {
+    const updatedQueue = JSON.parse(sessionStorage.getItem("queue") as string).filter(
+      (item: IQueueItem) => item.id !== itemId,
+    );
     setQueue(updatedQueue);
   };
 
