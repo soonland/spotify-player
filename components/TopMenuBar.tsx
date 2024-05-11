@@ -4,13 +4,14 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Drawer, List, ListItem } from "@mui/material";
+import { Drawer, List, ListItem, useTheme } from "@mui/material";
 import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
 import { useSession } from "next-auth/react";
 import { FC, ReactElement, useState } from "react";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
+import ChangeThemeMode from "./ChangeThemeMode";
 
 const TopMenuBar: FC = (): ReactElement => {
   const session = useSession();
@@ -19,10 +20,12 @@ const TopMenuBar: FC = (): ReactElement => {
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
+  const theme = useTheme();
+
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" data-testid="testid.appBar">
-        <Toolbar>
+      <AppBar position="fixed" data-testid="testid.appBar">
+        <Toolbar sx={{ backgroundColor: theme.palette.primary.main, color: theme.palette.text.secondary }}>
           <IconButton
             edge="start"
             color="inherit"
@@ -54,6 +57,7 @@ const TopMenuBar: FC = (): ReactElement => {
           </Drawer>
           <Search />
           {session.status === "authenticated" && <UserMenu />}
+          <ChangeThemeMode />
         </Toolbar>
       </AppBar>
     </Box>
