@@ -7,10 +7,6 @@ import AudiotrackIcon from "@mui/icons-material/Audiotrack";
 import PersonIcon from "@mui/icons-material/Person";
 import useTranslation from "next-translate/useTranslation";
 
-interface Props {
-  // Ajoutez les propriétés (props) nécessaires ici
-}
-
 const StyledStack = styled(Stack)(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -125,7 +121,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const Search: FC<Props> = () => {
+const Search: FC = () => {
   const [search, setSearch] = useState<string>("");
   const [searchType, setSearchType] = useState<string>("");
   const router = useRouter();
