@@ -21,7 +21,7 @@
     "@mui/material": "^5.15.15",
     "@mui/material-nextjs": "^5.15.11",
     "@mui/x-data-grid": "^7.3.2",
-    "dayjs": "^1.11.11",
+    "dayjs": "^1.11.13",
     "next": "^14.2.4",
     "next-auth": "^4.24.7",
     "next-translate": "^2.6.2",
