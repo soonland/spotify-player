@@ -26,7 +26,7 @@
     "next-auth": "^4.24.7",
     "next-translate": "^2.6.2",
     "react": "^18.2.0",
-    "react-dom": "^18",
+    "react-dom": "^19",
     "swr": "^2.2.5"
   },
   "devDependencies": {
@@ -38,7 +38,7 @@
     "@types/jest": "^29.5.12",
     "@types/node": "^22",
     "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react-dom": "^19",
     "@typescript-eslint/eslint-plugin": "^8.1.0",
     "@typescript-eslint/parser": "^8.1.0",
     "eslint": "^9.14.0",
