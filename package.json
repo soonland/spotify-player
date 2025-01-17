@@ -20,7 +20,7 @@
     "@mui/icons-material": "^6.1.6",
     "@mui/material": "^6.1.6",
     "@mui/material-nextjs": "^6.1.0",
-    "@mui/x-data-grid": "^7.3.2",
+    "@mui/x-data-grid": "^7.24.0",
     "dayjs": "^1.11.11",
     "next": "^15.0.3",
     "next-auth": "^4.24.7",
