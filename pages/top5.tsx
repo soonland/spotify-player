@@ -30,9 +30,9 @@ const Home = () => {
         )}
 
         <Box padding={2}>
-          <Grid container flexDirection={"column"} spacing={2}>
+          <Grid spacing={2}>
             {session.status === "authenticated" && (
-              <Grid item>
+              <Grid size={12}>
                 <ul>
                   {!isMutatingTop5 &&
                     dataTop5?.items.map((el, index) => {

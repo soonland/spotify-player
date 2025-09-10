@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const nextTranslate = require("next-translate-plugin");
 const dayjs = require("dayjs");
 const utc = require("dayjs/plugin/utc");
@@ -19,6 +18,7 @@ const nextConfig = nextTranslate({
       },
     ],
   },
+  transpilePackages: ["@mui/x-data-grid"],
 });
 
 module.exports = nextConfig;
