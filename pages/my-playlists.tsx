@@ -26,9 +26,9 @@ const Home = () => {
     <div>
       <main>
         <Box padding={2}>
-          <Grid container flexDirection={"column"} spacing={2}>
+          <Grid spacing={2}>
             {session.status === "authenticated" && (
-              <Grid item>
+              <Grid size={12}>
                 <ul>
                   {!isMutatingPlaylist &&
                     dataPlaylist?.items.map((el, index) => {

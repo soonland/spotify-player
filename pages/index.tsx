@@ -78,9 +78,9 @@ const Home = () => {
   };
 
   return (
-    <Grid container flexDirection={"column"} spacing={2}>
+    <Grid spacing={2}>
       {session.status === "authenticated" && (
-        <Grid item>
+        <Grid size={12}>
           <Queue />
           <SearchDataGrid isMutating={isMutating} data={convertResultsToDataGridRows(data)} />
         </Grid>
