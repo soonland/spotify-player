@@ -23,7 +23,7 @@
     "@mui/x-data-grid": "^8.11.1",
     "dayjs": "^1.11.11",
     "next": "^15.0.3",
-    "next-auth": "^4.24.7",
+    "next-auth": "^4.24.12",
     "next-translate": "^2.6.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
